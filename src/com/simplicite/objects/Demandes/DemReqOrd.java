@@ -39,7 +39,9 @@ public class DemReqOrd extends ObjectDB {
 	
 	@Override
 	public String[] getTargetObject(String rowId, String[] row) {
-		return DemCommon.getTargetObjectCom(rowId, row, "DemRequest", "DemOrder", "demReqordReqId", "demReqordOrdId", getParentObject(), this);
+		if(!DemCommon.verifTargetObject(rowId, row, getParentObject(), this).equals(null))
+			return DemCommon.getTargetObjectCom(row, "DemRequest", "DemOrder", "demReqordReqId", "demReqordOrdId", getParentObject(), this);
+		return null;
 	}
 
 	@Override

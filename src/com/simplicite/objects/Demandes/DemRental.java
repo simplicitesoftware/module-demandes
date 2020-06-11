@@ -38,7 +38,7 @@ public class DemRental extends DemRequest {
 			getField("demReqFutherInformation").setUpdatable(false);
 		}
 	}
-	
+	@Override
 	public void setUpdatableFields(){
 		getField("demReqTitle").setUpdatable(true);
 		getField("demReqReason").setUpdatable(true);
