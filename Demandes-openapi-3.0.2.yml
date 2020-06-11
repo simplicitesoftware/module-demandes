@@ -123,8 +123,8 @@ components:
           description: Type
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqReason:
           description: Reason of the request
           type: string
@@ -182,8 +182,8 @@ components:
           items:
             type: string
             enum:
-            - NOBUDGET
             - NOTNECESSARY
+            - NOBUDGET
     ArrayOfDemSupplier:
       type: array
       items:
@@ -294,8 +294,8 @@ components:
           description: Request Type
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqsupSupId__demSupAllocation:
           description: Supply Allocation
           type: string
@@ -381,8 +381,8 @@ components:
           description: Type
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqReason:
           description: Reason of the request
           type: string
@@ -429,8 +429,8 @@ components:
           items:
             type: string
             enum:
-            - NOBUDGET
             - NOTNECESSARY
+            - NOBUDGET
     ArrayOfDemRequestHistoric:
       type: array
       items:
@@ -762,8 +762,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqType
         description: Search filter for Type
@@ -824,8 +824,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOBUDGET
           - NOTNECESSARY
+          - NOBUDGET
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
@@ -1380,8 +1380,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqType
         description: Search filter for Type
@@ -1442,8 +1442,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOBUDGET
           - NOTNECESSARY
+          - NOBUDGET
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
@@ -1906,8 +1906,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqsupReqId__demReqType
         description: Search filter for Request Type

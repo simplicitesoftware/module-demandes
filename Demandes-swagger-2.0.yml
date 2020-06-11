@@ -189,8 +189,8 @@ paths:
         type: string
         required: false
         enum:
-        - PURCHASE
         - RENTAL
+        - PURCHASE
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -244,8 +244,8 @@ paths:
         type: string
         required: false
         enum:
-        - NOBUDGET
         - NOTNECESSARY
+        - NOBUDGET
       tags:
       - DemRental
   /rest/DemReqOrd:
@@ -712,8 +712,8 @@ paths:
         type: string
         required: false
         enum:
-        - PURCHASE
         - RENTAL
+        - PURCHASE
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -767,8 +767,8 @@ paths:
         type: string
         required: false
         enum:
-        - NOBUDGET
         - NOTNECESSARY
+        - NOBUDGET
       tags:
       - DemRequest
   /rest/DemOrder/{row_id}:
@@ -1154,8 +1154,8 @@ paths:
         type: string
         required: false
         enum:
-        - PURCHASE
         - RENTAL
+        - PURCHASE
       - in: query
         name: demReqsupReqId__demReqSupplyType
         description: Search filter for Request Supply type
@@ -2728,8 +2728,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - PURCHASE
         - RENTAL
+        - PURCHASE
       demReqReason:
         description: Reason of the request
         type: string
@@ -2787,8 +2787,8 @@ definitions:
         items:
           type: string
           enum:
-          - NOBUDGET
           - NOTNECESSARY
+          - NOBUDGET
   ArrayOfDemSupplier:
     type: array
     items:
@@ -2899,8 +2899,8 @@ definitions:
         description: Request Type
         type: string
         enum:
-        - PURCHASE
         - RENTAL
+        - PURCHASE
       demReqsupSupId__demSupAllocation:
         description: Supply Allocation
         type: string
@@ -2986,8 +2986,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - PURCHASE
         - RENTAL
+        - PURCHASE
       demReqReason:
         description: Reason of the request
         type: string
@@ -3034,8 +3034,8 @@ definitions:
         items:
           type: string
           enum:
-          - NOBUDGET
           - NOTNECESSARY
+          - NOBUDGET
   ArrayOfDemRequestHistoric:
     type: array
     items:

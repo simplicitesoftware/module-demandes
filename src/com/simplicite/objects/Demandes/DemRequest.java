@@ -41,25 +41,19 @@ public class DemRequest extends ObjectDB {
 		setFieldValue("demReqType", "PURCHASE");
 		setFieldValue("demReqReference", DemCommon.getNumero(getGrant(), "dem_req_reference", "dem_request", "REQ"));
 		setFieldValue("demReqRequestDate", Tool.getCurrentDate());
-		setUpdatableFields();
+		DemCommon.setUpdatableFieldsRequest(this);
 	}
 	
 	@Override
 	public void initUpdate() {
 		if((("PENDING").equals(getFieldValue("demReqStatus")) && getFieldValue("demReqFutherInformation").equals(""))){
-			setUpdatableFields();
+			DemCommon.setUpdatableFieldsRequest(this);
 		}
 		if(!("REQUESTFUTHERINFO").equals(getFieldValue("demReqStatus"))){
 			getField("demReqFutherInformation").setUpdatable(false);
 		}
 	}
 
-	public void setUpdatableFields(){
-		getField("demReqTitle").setUpdatable(true);
-		getField("demReqReason").setUpdatable(true);
-		getField("demReqSupplyType").setUpdatable(true);
-	}
-	
 	@Override
 	public void initCopy() {
 		initCreate();

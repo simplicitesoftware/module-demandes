@@ -46,4 +46,18 @@ public class DemCommon implements java.io.Serializable {
 		return null;
 	}
 	
+	public static void setUpdatableFieldsRental(ObjectDB obj){
+		obj.getField("demReqTitle").setUpdatable(true);
+		obj.getField("demReqReason").setUpdatable(true);
+		obj.getField("demReqSupplyType").setUpdatable(true);
+		obj.getField("demRenStartDate").setUpdatable(true);
+		obj.getField("demRenEndDate").setUpdatable(true);
+	}
+	
+	public static void setUpdatableFieldsRequest(ObjectDB obj){
+		obj.getField("demReqTitle").setUpdatable(true);
+		obj.getField("demReqReason").setUpdatable(true);
+		obj.getField("demReqSupplyType").setUpdatable(true);
+	}
+
 }
