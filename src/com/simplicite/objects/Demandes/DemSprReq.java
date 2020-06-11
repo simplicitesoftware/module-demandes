@@ -13,7 +13,7 @@ public class DemSprReq extends ObjectDB {
 	
 	@Override
 	public String[] getTargetObject(String rowId, String[] row) {
-		if(!DemCommon.verifTargetObject(rowId, row, getParentObject(), this).equals(null))
+		if(DemCommon.verifTargetObject(rowId, row, getParentObject(), this) != null)
 			return DemCommon.getTargetObjectCom(row, "DemSupplier", "DemRequest", "demSprreqSprId", "demSprreqReqId", getParentObject(), this);
 		return null;
 	}
