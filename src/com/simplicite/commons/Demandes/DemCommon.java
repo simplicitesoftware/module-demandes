@@ -23,5 +23,24 @@ public class DemCommon implements java.io.Serializable {
 			num = Long.valueOf(lastNum.substring(5))+1;
 		return Tool.format(year+ refTroisCaracteres + "%05d", num);
 	}
+
+	public static String[] getTargetObjectCom(String rowId, String[] row, String parentObjectName, String targetObjectName, String idTargetObject, String idParentObject, ObjectDB parentObject, ObjectDB obj) {
+		if("1".equals(obj.getParameter("_UI_EDIT_TEMPLATE_"))) // Template editor
+			return null;
+		if(rowId.equals(ObjectField.DEFAULT_ROW_ID)) 
+			return null;
+		if(parentObject == null)
+			return null;
+		if(row == null && (rowId.equals(obj.getRowId()) || obj.select(rowId)))
+			row = obj.getValues();
+		if(row == null)
+			return null;
+		AppLog.info(DemCommon.class, "gettargetobejct", "parentObject = " + parentObject.getName() + " obj.getFieldINdex = " + obj.getFieldIndex(idParentObject), obj.getGrant());
+		if(parentObject.getName().equals(parentObjectName))
+			return new String[]{targetObjectName, "the_ajax_" + targetObjectName, row[obj.getFieldIndex(idParentObject)] };
+		if(parentObject.getName().equals(targetObjectName))
+			return new String[]{ parentObjectName, "the_ajax_" + parentObjectName, row[obj.getFieldIndex(idTargetObject)] };
+		return null;
+	}
 	
 }

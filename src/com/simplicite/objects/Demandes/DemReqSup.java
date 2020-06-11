@@ -26,7 +26,7 @@ public class DemReqSup extends ObjectDB {
 		ObjectDB parentObject = getParentObject();
 		if(parentObject != null && parentObject.getName().equals("DemRequest") 
 			&& ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) 
-			&& parentObject.getFieldValue("demReqFutherInformation") != ""){
+			&& !parentObject.getFieldValue("demReqFutherInformation").equals("")){
 			return false;
 		}
 		if(parentObject != null && parentObject.getName().equals("DemRequest"))

@@ -3,6 +3,7 @@ package com.simplicite.objects.Demandes;
 import java.util.*;
 import com.simplicite.util.*;
 import com.simplicite.util.tools.*;
+import com.simplicite.commons.Demandes.DemCommon;
 
 /**
  * Business object DemReqOrd
@@ -38,21 +39,7 @@ public class DemReqOrd extends ObjectDB {
 	
 	@Override
 	public String[] getTargetObject(String rowId, String[] row) {
-		if("1".equals(getParameter("_UI_EDIT_TEMPLATE_"))) // Template editor
-			return null;
-		if(rowId.equals(ObjectField.DEFAULT_ROW_ID)) 
-			return null;
-		if(getParentObject() == null)
-			return null;
-		if(row == null && (rowId.equals(getRowId()) || select(rowId)))
-			row = getValues();
-		if(row == null)
-			return null;
-		if(getParentObject().getName().equals("DemRequest"))
-			return new String[]{"DemOrder", "the_ajax_DemOrder", row[getFieldIndex("demReqordOrdId")] };
-		if(getParentObject().getName().equals("DemOrder"))
-			return new String[]{ "DemRequest", "the_ajax_DemRequest", row[getFieldIndex("demReqordReqId")] };
-		return null;
+		return DemCommon.getTargetObjectCom(rowId, row, "DemRequest", "DemOrder", "demReqordReqId", "demReqordOrdId", getParentObject(), this);
 	}
 
 	@Override

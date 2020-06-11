@@ -189,8 +189,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -244,8 +244,8 @@ paths:
         type: string
         required: false
         enum:
-        - NOTNECESSARY
         - NOBUDGET
+        - NOTNECESSARY
       tags:
       - DemRental
   /rest/DemReqOrd:
@@ -712,8 +712,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -767,8 +767,8 @@ paths:
         type: string
         required: false
         enum:
-        - NOTNECESSARY
         - NOBUDGET
+        - NOTNECESSARY
       tags:
       - DemRequest
   /rest/DemOrder/{row_id}:
@@ -1154,8 +1154,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqsupReqId__demReqSupplyType
         description: Search filter for Request Supply type
@@ -2728,8 +2728,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqReason:
         description: Reason of the request
         type: string
@@ -2787,8 +2787,8 @@ definitions:
         items:
           type: string
           enum:
-          - NOTNECESSARY
           - NOBUDGET
+          - NOTNECESSARY
   ArrayOfDemSupplier:
     type: array
     items:
@@ -2899,8 +2899,8 @@ definitions:
         description: Request Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqsupSupId__demSupAllocation:
         description: Supply Allocation
         type: string
@@ -2986,8 +2986,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqReason:
         description: Reason of the request
         type: string
@@ -3034,8 +3034,8 @@ definitions:
         items:
           type: string
           enum:
-          - NOTNECESSARY
           - NOBUDGET
+          - NOTNECESSARY
   ArrayOfDemRequestHistoric:
     type: array
     items:
