@@ -1,0 +1,10 @@
+{
+    "date": "Thu Jun 11 11:34:40 CEST 2020",
+    "name": "Demandes",
+    "format": "xml",
+    "description": "",
+    "files": ["Demandes.xml"],
+    "repository": {},
+    "version": "0.1",
+    "dependencies": {"Simplicite": "4.0"}
+}

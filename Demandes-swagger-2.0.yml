@@ -1,0 +1,3181 @@
+#  ___ _            _ _    _ _    __
+# / __(_)_ __  _ __| (_)__(_) |_ /_/
+# \__ \ | '  \| '_ \ | / _| |  _/ -_)
+# |___/_|_|_|_| .__/_|_\__|_|\__\___|
+#             |_| Module: Demandes 0.1
+paths:
+  /rest/DemOrder:
+    get:
+      summary: Search DemOrder business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demorder-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemOrder'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demOrdReference
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: demOrdQuantityTotal
+        description: Search filter for Total quantity ordered
+        type: integer
+        required: false
+      - in: query
+        name: demOrdOrderDate
+        description: Search filter for Order date
+        type: string
+        required: false
+      - in: query
+        name: demOrdPriceTotal
+        description: Search filter for Total price
+        type: number
+        required: false
+      - in: query
+        name: demOrdStatus
+        description: Search filter for Order status
+        type: string
+        required: false
+        enum:
+        - PENDING
+        - PLACED
+        - VALIDATED
+        - SHIPPED
+        - DELIVERED
+      tags:
+      - DemOrder
+  /login:
+    get:
+      summary: Login (obtain bearer token)
+      security:
+      - basicAuth: []
+      produces:
+      - text/plain
+      - application/json
+      operationId: login
+      responses:
+        '200':
+          description: Successful login
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+      parameters:
+      - in: query
+        name: _output
+        description: Optional output format
+        type: string
+        required: false
+        enum:
+        - json
+        - oauth2
+        - token
+      tags:
+      - session
+  /logout:
+    get:
+      summary: Logout (revoke bearer token)
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: logout
+      responses:
+        '200':
+          description: Successfull logout
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+      tags:
+      - session
+  /rest/DemRental:
+    get:
+      summary: Search DemRental business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrental-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemRental'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demRenStartDate
+        description: Search filter for From
+        type: string
+        required: false
+      - in: query
+        name: demReqReference
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: demRenEndDate
+        description: Search filter for To
+        type: string
+        required: false
+      - in: query
+        name: demReqTitle
+        description: Search filter for Title
+        type: string
+        required: false
+      - in: query
+        name: demRenEquipmentCondition
+        description: Search filter for Equipment's condition
+        type: string
+        required: false
+      - in: query
+        name: demReqType
+        description: Search filter for Type
+        type: string
+        required: false
+        enum:
+        - RENTAL
+        - PURCHASE
+      - in: query
+        name: demReqStatus
+        description: Search filter for Status
+        type: string
+        required: false
+        enum:
+        - PENDING
+        - VALIDATED
+        - REJECTEDMAN
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - PROCESSED
+        - REJECTEDADM
+        - CLOSED
+        - CANCELLED
+      - in: query
+        name: demReqReason
+        description: Search filter for Reason of the request
+        type: string
+        required: false
+      - in: query
+        name: demReqFutherInformation
+        description: Search filter for Futher information
+        type: string
+        required: false
+      - in: query
+        name: demReqRequestDate
+        description: Search filter for Request's date
+        type: string
+        required: false
+      - in: query
+        name: demReqSupplyType
+        description: Search filter for Supply type
+        type: string
+        required: false
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      - in: query
+        name: demReqRejectedReasonAdministrator
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - NOBUDGET
+        - UNAVAILABLE
+      - in: query
+        name: demReqRejectedReasonManager
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - NOTNECESSARY
+        - NOBUDGET
+      tags:
+      - DemRental
+  /rest/DemReqOrd:
+    get:
+      summary: Search DemReqOrd business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqord-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemReqOrd'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demReqordReqId
+        description: Search filter for Request
+        type: string
+        required: false
+      - in: query
+        name: demReqordReqId__demReqReference
+        description: Search filter for Request Reference
+        type: string
+        required: false
+      - in: query
+        name: demReqordReqId__demReqTitle
+        description: Search filter for Request Title
+        type: string
+        required: false
+      - in: query
+        name: demReqordReqId__demReqRequestDate
+        description: Search filter for Request Request's date
+        type: string
+        required: false
+      - in: query
+        name: demReqordOrdId
+        description: Search filter for Order
+        type: string
+        required: false
+      - in: query
+        name: demReqordOrdId__demOrdReference
+        description: Search filter for Order Reference
+        type: string
+        required: false
+      tags:
+      - DemReqOrd
+  /rest/DemSupOrd:
+    get:
+      summary: Search DemSupOrd business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupord-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemSupOrd'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demSupordSupId
+        description: Search filter for Supply
+        type: string
+        required: false
+      - in: query
+        name: demSupordSupId__demSupReference
+        description: Search filter for Supply Reference
+        type: string
+        required: false
+      - in: query
+        name: demSupordSupId__demSupSprId
+        description: Search filter for Supply Supplier
+        type: string
+        required: false
+      - in: query
+        name: demSupordSupId__demSupSprId__demSprName
+        description: Search filter for Supply Supplier Name
+        type: string
+        required: false
+      - in: query
+        name: demSupordSupId__demSupName
+        description: Search filter for Supply Name
+        type: string
+        required: false
+      - in: query
+        name: demSupordSupId__demSupStockQuantity
+        description: Search filter for Supply Stock quantity
+        type: integer
+        required: false
+      - in: query
+        name: demSupordSupId__demSupPrice
+        description: Search filter for Supply Price
+        type: number
+        required: false
+      - in: query
+        name: demSupordOrdId
+        description: Search filter for Order
+        type: string
+        required: false
+      - in: query
+        name: demSupordOrdId__demOrdReference
+        description: Search filter for Order Reference
+        type: string
+        required: false
+      - in: query
+        name: demSupordQuantityOrdered
+        description: Search filter for Quantity ordered
+        type: integer
+        required: false
+      tags:
+      - DemSupOrd
+  /rest/DemSupplier:
+    get:
+      summary: Search DemSupplier business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupplier-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemSupplier'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demSprName
+        description: Search filter for Name
+        type: string
+        required: false
+      - in: query
+        name: demSprContactLastName
+        description: Search filter for Contact last name
+        type: string
+        required: false
+      - in: query
+        name: demSprContactName
+        description: Search filter for Contact name
+        type: string
+        required: false
+      - in: query
+        name: demSprContactEmail
+        description: Search filter for Contact e-mail
+        type: string
+        required: false
+      - in: query
+        name: demSprContactPhone
+        description: Search filter for Contact phone number
+        type: string
+        required: false
+      tags:
+      - DemSupplier
+  /rest/DemSupplier/{row_id}:
+    post:
+      summary: Create a new DemSupplierbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupplier-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupplier'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSupplier'
+        in: body
+        name: body
+      tags:
+      - DemSupplier
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemSupplier business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupplier-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupplier'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemSupplier
+    delete:
+      summary: Delete a DemSupplier business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupplier-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemSupplier
+    put:
+      summary: Update a DemSupplierbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupplier-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupplier'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSupplier'
+        in: body
+        name: body
+      tags:
+      - DemSupplier
+      consumes:
+      - application/json
+  /:
+    get:
+      summary: Get user session information
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: info
+      responses:
+        '200':
+          description: Success in getting user session information
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+      parameters:
+      - in: query
+        name: texts
+        description: Texts?
+        type: boolean
+        required: false
+      tags:
+      - session
+  /rest/DemRequest:
+    get:
+      summary: Search DemRequest business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequest-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemRequest'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demReqReference
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: demReqTitle
+        description: Search filter for Title
+        type: string
+        required: false
+      - in: query
+        name: demReqType
+        description: Search filter for Type
+        type: string
+        required: false
+        enum:
+        - RENTAL
+        - PURCHASE
+      - in: query
+        name: demReqStatus
+        description: Search filter for Status
+        type: string
+        required: false
+        enum:
+        - PENDING
+        - VALIDATED
+        - REJECTEDMAN
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - PROCESSED
+        - REJECTEDADM
+        - CLOSED
+        - CANCELLED
+      - in: query
+        name: demReqReason
+        description: Search filter for Reason of the request
+        type: string
+        required: false
+      - in: query
+        name: demReqFutherInformation
+        description: Search filter for Futher information
+        type: string
+        required: false
+      - in: query
+        name: demReqRequestDate
+        description: Search filter for Request's date
+        type: string
+        required: false
+      - in: query
+        name: demReqSupplyType
+        description: Search filter for Supply type
+        type: string
+        required: false
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      - in: query
+        name: demReqRejectedReasonAdministrator
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - NOBUDGET
+        - UNAVAILABLE
+      - in: query
+        name: demReqRejectedReasonManager
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - NOTNECESSARY
+        - NOBUDGET
+      tags:
+      - DemRequest
+  /rest/DemOrder/{row_id}:
+    post:
+      summary: Create a new DemOrderbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demorder-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemOrder'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemOrder'
+        in: body
+        name: body
+      tags:
+      - DemOrder
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemOrder business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demorder-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemOrder'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemOrder
+    delete:
+      summary: Delete a DemOrder business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demorder-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemOrder
+    put:
+      summary: Update a DemOrderbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demorder-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemOrder'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemOrder'
+        in: body
+        name: body
+      tags:
+      - DemOrder
+      consumes:
+      - application/json
+  /rest/DemSupOrd/{row_id}:
+    post:
+      summary: Create a new DemSupOrdbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupord-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupOrd'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSupOrd'
+        in: body
+        name: body
+      tags:
+      - DemSupOrd
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemSupOrd business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupord-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupOrd'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemSupOrd
+    delete:
+      summary: Delete a DemSupOrd business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupord-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemSupOrd
+    put:
+      summary: Update a DemSupOrdbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupord-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupOrd'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSupOrd'
+        in: body
+        name: body
+      tags:
+      - DemSupOrd
+      consumes:
+      - application/json
+  /rest/DemReqSup:
+    get:
+      summary: Search DemReqSup business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqsup-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemReqSup'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demReqsupReqId
+        description: Search filter for Request
+        type: string
+        required: false
+      - in: query
+        name: demReqsupReqId__demReqReference
+        description: Search filter for Request Reference
+        type: string
+        required: false
+      - in: query
+        name: demReqsupReqId__demReqTitle
+        description: Search filter for Request Title
+        type: string
+        required: false
+      - in: query
+        name: demReqsupReqId__demReqType
+        description: Search filter for Request Type
+        type: string
+        required: false
+        enum:
+        - RENTAL
+        - PURCHASE
+      - in: query
+        name: demReqsupReqId__demReqSupplyType
+        description: Search filter for Request Supply type
+        type: string
+        required: false
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      - in: query
+        name: demReqsupSupId
+        description: Search filter for Supply
+        type: string
+        required: false
+      - in: query
+        name: demReqsupSupId__demSupReference
+        description: Search filter for Supply Reference
+        type: string
+        required: false
+      - in: query
+        name: demReqsupSupId__demSupSprId
+        description: Search filter for Supply Supplier
+        type: string
+        required: false
+      - in: query
+        name: demReqsupSupId__demSupSprId__demSprName
+        description: Search filter for Supply Supplier Name
+        type: string
+        required: false
+      - in: query
+        name: demReqsupSupId__demSupName
+        description: Search filter for Supply Name
+        type: string
+        required: false
+      - in: query
+        name: demReqsupSupId__demSupType
+        description: Search filter for Supply Type
+        type: string
+        required: false
+        enum:
+        - OFFICE
+        - IT
+        - FURNITURE
+      - in: query
+        name: demReqsupSupId__demSupAllocation
+        description: Search filter for Supply Allocation
+        type: string
+        required: false
+        enum:
+        - PURCHASE
+        - RENTAL
+      - in: query
+        name: demReqsupQuantityRequired
+        description: Search filter for Quantity required
+        type: integer
+        required: false
+      tags:
+      - DemReqSup
+  /rest/DemRental/{row_id}:
+    post:
+      summary: Create a new DemRentalbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrental-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRental'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemRental'
+        in: body
+        name: body
+      tags:
+      - DemRental
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemRental business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrental-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRental'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemRental
+    delete:
+      summary: Delete a DemRental business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrental-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemRental
+    put:
+      summary: Update a DemRentalbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrental-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRental'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemRental'
+        in: body
+        name: body
+      tags:
+      - DemRental
+      consumes:
+      - application/json
+  /rest/DemSupply:
+    get:
+      summary: Search DemSupply business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupply-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemSupply'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demSupReference
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: demSupName
+        description: Search filter for Name
+        type: string
+        required: false
+      - in: query
+        name: demSupType
+        description: Search filter for Type
+        type: string
+        required: false
+        enum:
+        - OFFICE
+        - IT
+        - FURNITURE
+      - in: query
+        name: demSupDescription
+        description: Search filter for Description
+        type: string
+        required: false
+      - in: query
+        name: demSupDeliveryTimeDays
+        description: Search filter for Delivery time in days
+        type: integer
+        required: false
+      - in: query
+        name: demSupStockQuantity
+        description: Search filter for Stock quantity
+        type: integer
+        required: false
+      - in: query
+        name: demSupPrice
+        description: Search filter for Price
+        type: number
+        required: false
+      - in: query
+        name: demSupAllocation
+        description: Search filter for Allocation
+        type: string
+        required: false
+        enum:
+        - PURCHASE
+        - RENTAL
+      - in: query
+        name: demSupSprId
+        description: Search filter for Supplier
+        type: string
+        required: false
+      - in: query
+        name: demSupSprId__demSprName
+        description: Search filter for Supplier Name
+        type: string
+        required: false
+      tags:
+      - DemSupply
+  /rest/DemReqOrd/{row_id}:
+    post:
+      summary: Create a new DemReqOrdbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqord-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemReqOrd'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemReqOrd'
+        in: body
+        name: body
+      tags:
+      - DemReqOrd
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemReqOrd business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqord-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemReqOrd'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemReqOrd
+    delete:
+      summary: Delete a DemReqOrd business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqord-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemReqOrd
+    put:
+      summary: Update a DemReqOrdbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqord-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemReqOrd'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemReqOrd'
+        in: body
+        name: body
+      tags:
+      - DemReqOrd
+      consumes:
+      - application/json
+  /rest/DemRequest/{row_id}:
+    post:
+      summary: Create a new DemRequestbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequest-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRequest'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemRequest'
+        in: body
+        name: body
+      tags:
+      - DemRequest
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemRequest business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequest-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRequest'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemRequest
+    delete:
+      summary: Delete a DemRequest business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequest-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemRequest
+    put:
+      summary: Update a DemRequestbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequest-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRequest'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemRequest'
+        in: body
+        name: body
+      tags:
+      - DemRequest
+      consumes:
+      - application/json
+  /rest/DemRequestHistoric:
+    get:
+      summary: Search DemRequestHistoric business object records or get contextualized
+        metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequesthistoric-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemRequestHistoric'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: row_ref_id
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: row_idx
+        description: Search filter for Version
+        type: integer
+        required: false
+      - in: query
+        name: created_by_hist
+        description: Search filter for User
+        type: string
+        required: false
+      - in: query
+        name: created_dt_hist
+        description: Search filter for Date
+        type: string
+        required: false
+      - in: query
+        name: demReqReference
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: demReqRejectedReasonManager
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - NOTNECESSARY
+        - NOBUDGET
+      - in: query
+        name: demReqRejectedReasonAdministrator
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - NOBUDGET
+        - UNAVAILABLE
+      - in: query
+        name: demReqStatus
+        description: Search filter for Status
+        type: string
+        required: false
+        enum:
+        - PENDING
+        - VALIDATED
+        - REJECTEDMAN
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - PROCESSED
+        - REJECTEDADM
+        - CLOSED
+        - CANCELLED
+      tags:
+      - DemRequestHistoric
+  /rest/DemSprReq/{row_id}:
+    post:
+      summary: Create a new DemSprReqbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsprreq-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSprReq'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSprReq'
+        in: body
+        name: body
+      tags:
+      - DemSprReq
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemSprReq business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsprreq-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSprReq'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemSprReq
+    delete:
+      summary: Delete a DemSprReq business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsprreq-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemSprReq
+    put:
+      summary: Update a DemSprReqbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsprreq-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSprReq'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSprReq'
+        in: body
+        name: body
+      tags:
+      - DemSprReq
+      consumes:
+      - application/json
+  /rest/DemSupply/{row_id}:
+    post:
+      summary: Create a new DemSupplybusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupply-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupply'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSupply'
+        in: body
+        name: body
+      tags:
+      - DemSupply
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemSupply business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupply-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupply'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemSupply
+    delete:
+      summary: Delete a DemSupply business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupply-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemSupply
+    put:
+      summary: Update a DemSupplybusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsupply-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemSupply'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemSupply'
+        in: body
+        name: body
+      tags:
+      - DemSupply
+      consumes:
+      - application/json
+  /rest/DemRequestHistoric/{row_id}:
+    post:
+      summary: Create a new DemRequestHistoricbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequesthistoric-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRequestHistoric'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemRequestHistoric'
+        in: body
+        name: body
+      tags:
+      - DemRequestHistoric
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemRequestHistoric business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequesthistoric-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRequestHistoric'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemRequestHistoric
+    delete:
+      summary: Delete a DemRequestHistoric business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequesthistoric-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemRequestHistoric
+    put:
+      summary: Update a DemRequestHistoricbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demrequesthistoric-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemRequestHistoric'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemRequestHistoric'
+        in: body
+        name: body
+      tags:
+      - DemRequestHistoric
+      consumes:
+      - application/json
+  /rest/DemSprReq:
+    get:
+      summary: Search DemSprReq business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demsprreq-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemSprReq'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demSprreqSprId
+        description: Search filter for Supplier
+        type: string
+        required: false
+      - in: query
+        name: demSprreqSprId__demSprName
+        description: Search filter for Supplier Name
+        type: string
+        required: false
+      - in: query
+        name: demSprreqReqId
+        description: Search filter for Request
+        type: string
+        required: false
+      - in: query
+        name: demSprreqReqId__demReqReference
+        description: Search filter for Request Reference
+        type: string
+        required: false
+      tags:
+      - DemSprReq
+  /rest/DemReqSup/{row_id}:
+    post:
+      summary: Create a new DemReqSupbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqsup-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemReqSup'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemReqSup'
+        in: body
+        name: body
+      tags:
+      - DemReqSup
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemReqSup business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqsup-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemReqSup'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemReqSup
+    delete:
+      summary: Delete a DemReqSup business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqsup-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemReqSup
+    put:
+      summary: Update a DemReqSupbusiness object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demreqsup-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemReqSup'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemReqSup'
+        in: body
+        name: body
+      tags:
+      - DemReqSup
+      consumes:
+      - application/json
+securityDefinitions:
+  basicAuth:
+    type: basic
+  bearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+definitions:
+  Error404:
+    type: object
+    properties:
+      error:
+        description: Error message
+        type: string
+      status:
+        description: Error status
+        type: integer
+        enum:
+        - 404
+  DemRequestHistoric:
+    type: object
+    properties:
+      demReqReference:
+        description: Reference
+        type: string
+      row_idx:
+        description: Version
+        type: integer
+      created_dt_hist:
+        description: Date
+        type: string
+        example: yyyy-MM-dd HH:mm:ss
+      demReqRejectedReasonAdministrator:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - NOBUDGET
+          - UNAVAILABLE
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqRejectedReasonManager:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - NOTNECESSARY
+          - NOBUDGET
+      demReqStatus:
+        description: Status
+        type: string
+        enum:
+        - PENDING
+        - VALIDATED
+        - REJECTEDMAN
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - PROCESSED
+        - REJECTEDADM
+        - CLOSED
+        - CANCELLED
+      created_by_hist:
+        description: User
+        type: string
+      row_ref_id:
+        description: Reference
+        type: string
+  ArrayOfDemSupply:
+    type: array
+    items:
+      $ref: '#/definitions/DemSupply'
+  ArrayOfDemSprReq:
+    type: array
+    items:
+      $ref: '#/definitions/DemSprReq'
+  ArrayOfDemSupOrd:
+    type: array
+    items:
+      $ref: '#/definitions/DemSupOrd'
+  PublicationResult:
+    type: object
+    properties:
+      mime:
+        description: MIME type
+        type: string
+      content:
+        description: Content (plain text or base64 encoded)
+        type: string
+  DemSupplier:
+    type: object
+    properties:
+      demSprContactName:
+        description: Contact name
+        type: string
+      demSprContactEmail:
+        description: Contact e-mail
+        type: string
+      demSprContactPhone:
+        description: Contact phone number
+        type: string
+      demSprName:
+        description: Name
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demSprContactLastName:
+        description: Contact last name
+        type: string
+  DemRental:
+    type: object
+    properties:
+      demReqReference:
+        description: Reference
+        type: string
+      demReqRequestDate:
+        description: Request's date
+        type: string
+        example: yyyy-MM-dd
+      demReqType:
+        description: Type
+        type: string
+        enum:
+        - RENTAL
+        - PURCHASE
+      demReqReason:
+        description: Reason of the request
+        type: string
+      demRenEndDate:
+        description: To
+        type: string
+        example: yyyy-MM-dd HH:mm:ss
+      demReqTitle:
+        description: Title
+        type: string
+      demRenEquipmentCondition:
+        description: Equipment's condition
+        type: string
+      demReqFutherInformation:
+        description: Futher information
+        type: string
+      demRenStartDate:
+        description: From
+        type: string
+        example: yyyy-MM-dd HH:mm:ss
+      demReqSupplyType:
+        description: Supply type
+        type: string
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      demReqRejectedReasonAdministrator:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - NOBUDGET
+          - UNAVAILABLE
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqStatus:
+        description: Status
+        type: string
+        enum:
+        - PENDING
+        - VALIDATED
+        - REJECTEDMAN
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - PROCESSED
+        - REJECTEDADM
+        - CLOSED
+        - CANCELLED
+      demReqRejectedReasonManager:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - NOTNECESSARY
+          - NOBUDGET
+  ArrayOfDemSupplier:
+    type: array
+    items:
+      $ref: '#/definitions/DemSupplier'
+  ArrayOfDemReqOrd:
+    type: array
+    items:
+      $ref: '#/definitions/DemReqOrd'
+  DemReqOrd:
+    type: object
+    properties:
+      demReqordReqId:
+        description: Request
+        type: string
+      demReqordReqId__demReqRequestDate:
+        description: Request Request's date
+        type: string
+        example: yyyy-MM-dd
+      demReqordReqId__demReqReference:
+        description: Request Reference
+        type: string
+      demReqordOrdId__demOrdReference:
+        description: Order Reference
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqordReqId__demReqTitle:
+        description: Request Title
+        type: string
+      demReqordOrdId:
+        description: Order
+        type: string
+  Error400:
+    type: object
+    properties:
+      error:
+        description: Error message
+        type: string
+      status:
+        description: Error status
+        type: integer
+        enum:
+        - 400
+  Error401:
+    type: object
+    properties:
+      error:
+        description: Error message
+        type: string
+      status:
+        description: Error status
+        type: integer
+        enum:
+        - 401
+  Error500:
+    type: object
+    properties:
+      error:
+        description: Error message
+        type: string
+      status:
+        description: Error status
+        type: integer
+        enum:
+        - 500
+  ArrayOfDemReqSup:
+    type: array
+    items:
+      $ref: '#/definitions/DemReqSup'
+  Error403:
+    type: object
+    properties:
+      error:
+        description: Error message
+        type: string
+      status:
+        description: Error status
+        type: integer
+        enum:
+        - 403
+  DemReqSup:
+    type: object
+    properties:
+      demReqsupSupId:
+        description: Supply
+        type: string
+      demReqsupSupId__demSupSprId__demSprName:
+        description: Supply Supplier Name
+        type: string
+      demReqsupReqId:
+        description: Request
+        type: string
+      demReqsupSupId__demSupType:
+        description: Supply Type
+        type: string
+        enum:
+        - OFFICE
+        - IT
+        - FURNITURE
+      demReqsupSupId__demSupName:
+        description: Supply Name
+        type: string
+      demReqsupReqId__demReqTitle:
+        description: Request Title
+        type: string
+      demReqsupReqId__demReqType:
+        description: Request Type
+        type: string
+        enum:
+        - RENTAL
+        - PURCHASE
+      demReqsupSupId__demSupAllocation:
+        description: Supply Allocation
+        type: string
+        enum:
+        - PURCHASE
+        - RENTAL
+      demReqsupSupId__demSupSprId:
+        description: Supply Supplier
+        type: string
+      demReqsupSupId__demSupReference:
+        description: Supply Reference
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqsupReqId__demReqReference:
+        description: Request Reference
+        type: string
+      demReqsupReqId__demReqSupplyType:
+        description: Request Supply type
+        type: string
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      demReqsupQuantityRequired:
+        description: Quantity required
+        type: integer
+  DemSupply:
+    type: object
+    properties:
+      demSupType:
+        description: Type
+        type: string
+        enum:
+        - OFFICE
+        - IT
+        - FURNITURE
+      demSupReference:
+        description: Reference
+        type: string
+      demSupName:
+        description: Name
+        type: string
+      demSupDeliveryTimeDays:
+        description: Delivery time in days
+        type: integer
+      demSupAllocation:
+        description: Allocation
+        type: string
+        enum:
+        - PURCHASE
+        - RENTAL
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demSupSprId:
+        description: Supplier
+        type: string
+      demSupStockQuantity:
+        description: Stock quantity
+        type: integer
+      demSupDescription:
+        description: Description
+        type: string
+      demSupPrice:
+        description: Price
+        type: number
+      demSupSprId__demSprName:
+        description: Supplier Name
+        type: string
+  DemRequest:
+    type: object
+    properties:
+      demReqReference:
+        description: Reference
+        type: string
+      demReqRequestDate:
+        description: Request's date
+        type: string
+        example: yyyy-MM-dd
+      demReqType:
+        description: Type
+        type: string
+        enum:
+        - RENTAL
+        - PURCHASE
+      demReqReason:
+        description: Reason of the request
+        type: string
+      demReqSupplyType:
+        description: Supply type
+        type: string
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      demReqTitle:
+        description: Title
+        type: string
+      demReqRejectedReasonAdministrator:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - NOBUDGET
+          - UNAVAILABLE
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqStatus:
+        description: Status
+        type: string
+        enum:
+        - PENDING
+        - VALIDATED
+        - REJECTEDMAN
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - PROCESSED
+        - REJECTEDADM
+        - CLOSED
+        - CANCELLED
+      demReqFutherInformation:
+        description: Futher information
+        type: string
+      demReqRejectedReasonManager:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - NOTNECESSARY
+          - NOBUDGET
+  ArrayOfDemRequestHistoric:
+    type: array
+    items:
+      $ref: '#/definitions/DemRequestHistoric'
+  DemSupOrd:
+    type: object
+    properties:
+      demSupordOrdId__demOrdReference:
+        description: Order Reference
+        type: string
+      demSupordQuantityOrdered:
+        description: Quantity ordered
+        type: integer
+      demSupordSupId__demSupSprId__demSprName:
+        description: Supply Supplier Name
+        type: string
+      demSupordSupId__demSupName:
+        description: Supply Name
+        type: string
+      demSupordSupId__demSupStockQuantity:
+        description: Supply Stock quantity
+        type: integer
+      demSupordOrdId:
+        description: Order
+        type: string
+      demSupordSupId__demSupReference:
+        description: Supply Reference
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demSupordSupId__demSupPrice:
+        description: Supply Price
+        type: number
+      demSupordSupId:
+        description: Supply
+        type: string
+      demSupordSupId__demSupSprId:
+        description: Supply Supplier
+        type: string
+  ArrayOfDemRequest:
+    type: array
+    items:
+      $ref: '#/definitions/DemRequest'
+  ArrayOfDemOrder:
+    type: array
+    items:
+      $ref: '#/definitions/DemOrder'
+  ArrayOfDemRental:
+    type: array
+    items:
+      $ref: '#/definitions/DemRental'
+  ActionResult:
+    type: object
+    properties:
+      result:
+        description: Action result
+        type: string
+  TreeviewData:
+    type: object
+    properties:
+      item:
+        description: Object item with lists of linked objects' items
+        type: object
+  DemOrder:
+    type: object
+    properties:
+      demOrdReference:
+        description: Reference
+        type: string
+      demOrdQuantityTotal:
+        description: Total quantity ordered
+        type: integer
+      demOrdPriceTotal:
+        description: Total price
+        type: number
+      demOrdOrderDate:
+        description: Order date
+        type: string
+        example: yyyy-MM-dd
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demOrdStatus:
+        description: Order status
+        type: string
+        enum:
+        - PENDING
+        - PLACED
+        - VALIDATED
+        - SHIPPED
+        - DELIVERED
+  DemSprReq:
+    type: object
+    properties:
+      demSprreqSprId__demSprName:
+        description: Supplier Name
+        type: string
+      demSprreqSprId:
+        description: Supplier
+        type: string
+      demSprreqReqId__demReqReference:
+        description: Request Reference
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demSprreqReqId:
+        description: Request
+        type: string
+swagger: '2.0'
+info:
+  license:
+    name: Simplicite license
+    url: http://www.simplicitesoftware.com
+  contact:
+    name: Simplicite Software
+    url: http://www.simplicitesoftware.com
+    email: contact@simplicitesoftware.com
+  description: API for module Demandes
+  title: Demandes
+  version: '0.1'
+tags:
+- name: DemOrder
+  description: Orders
+- name: DemRental
+  description: Rental request
+- name: DemReqOrd
+  description: Request/Order
+- name: DemReqSup
+  description: Request/Supply
+- name: DemRequest
+  description: Purchase request
+- name: DemRequestHistoric
+  description: Request historic
+- name: DemSprReq
+  description: Request/Supplier
+- name: DemSupOrd
+  description: Order/Supply
+- name: DemSupplier
+  description: Suppliers
+- name: DemSupply
+  description: Supplies
