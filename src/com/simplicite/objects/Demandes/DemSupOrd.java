@@ -13,10 +13,7 @@ public class DemSupOrd extends ObjectDB {
 	
 	@Override
 	public boolean isCreateEnable() {
-		if(getParentObject() != null && getParentObject().getName().equals("DemOrder") && !getParentObject().getFieldValue("demOrdStatus").equals("PENDING")){
-			return false;
-		}
-		return getParentObject() != null && !getParentObject().getName().equals("DemSupply");
+		return (getParentObject() != null && !getParentObject().getName().equals("DemSupply") && getParentObject().getFieldValue("demOrdStatus").equals("PENDING"));
 	}
 	
 	@Override

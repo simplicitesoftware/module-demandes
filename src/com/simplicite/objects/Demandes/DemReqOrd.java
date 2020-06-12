@@ -13,9 +13,8 @@ public class DemReqOrd extends ObjectDB {
 	
 	@Override
 	public boolean isCreateEnable() {
-		if(getParentObject() != null && getParentObject().getName().equals("DemOrder") && !getParentObject().getFieldValue("demOrdStatus").equals("PENDING"))
-			return false;
-		return	getParentObject() != null && !getParentObject().getName().equals("DemRequest");
+		return (getParentObject() != null && !getParentObject().getName().equals("DemRequest") && getParentObject().getFieldValue("demOrdStatus").equals("PENDING"));
+
 	}
 	
 	@Override
@@ -39,7 +38,8 @@ public class DemReqOrd extends ObjectDB {
 	public String[] getTargetObject(String rowId, String[] row) {
 		if(DemCommon.verifTargetObject(rowId, row, getParentObject(), this) != null)
 			return DemCommon.getTargetObjectCom(row, "DemRequest", "DemOrder", "demReqordReqId", "demReqordOrdId", getParentObject(), this);
-		return null;
+		else
+			return null;
 	}
 
 	@Override
