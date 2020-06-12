@@ -21,9 +21,10 @@ public class GrantHooks extends GrantHooksInterface {
 				item.getAccessibleStates().remove(0);
 			}
 			if(item.getObjectName().equals("DemRental")){
-				for(int j = 6; j >= 3; j--){
-					item.getAccessibleStates().remove(j);
-				}
+				item.getAccessibleStates().remove(6);
+				item.getAccessibleStates().remove(5);
+				item.getAccessibleStates().remove(4);
+				item.getAccessibleStates().remove(3);
 			}
 		}
 	}

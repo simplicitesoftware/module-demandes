@@ -228,8 +228,8 @@ paths:
         required: false
         enum:
         - FURNITURE
-        - IT
         - OFFICE
+        - IT
       - in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -751,8 +751,8 @@ paths:
         required: false
         enum:
         - FURNITURE
-        - IT
         - OFFICE
+        - IT
       - in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -1163,8 +1163,8 @@ paths:
         required: false
         enum:
         - FURNITURE
-        - IT
         - OFFICE
+        - IT
       - in: query
         name: demReqsupSupId
         description: Search filter for Supply
@@ -2755,8 +2755,8 @@ definitions:
         type: string
         enum:
         - FURNITURE
-        - IT
         - OFFICE
+        - IT
       demReqRejectedReasonAdministrator:
         description: Rejected reason
         type: array
@@ -2924,8 +2924,8 @@ definitions:
         type: string
         enum:
         - FURNITURE
-        - IT
         - OFFICE
+        - IT
       demReqsupQuantityRequired:
         description: Quantity required
         type: integer
@@ -2996,8 +2996,8 @@ definitions:
         type: string
         enum:
         - FURNITURE
-        - IT
         - OFFICE
+        - IT
       demReqTitle:
         description: Title
         type: string

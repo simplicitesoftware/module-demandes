@@ -28,7 +28,7 @@ public class DemRequest extends ObjectDB {
 	public boolean isCreateEnable() {
 		if(getGrant().hasResponsibility("DEM_ADMINISTRATOR") && !getFieldValue("demReqStatus").equals("VALIDATED"))
 			return false;
-		return true;
+		return getGrant().hasResponsibility("DEM_ENT") || getGrant().hasResponsibility("DEM_GROUP");
 	}
 	
 	@Override

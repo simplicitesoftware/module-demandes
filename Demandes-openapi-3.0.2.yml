@@ -150,8 +150,8 @@ components:
           type: string
           enum:
           - FURNITURE
-          - IT
           - OFFICE
+          - IT
         demReqRejectedReasonAdministrator:
           description: Rejected reason
           type: array
@@ -319,8 +319,8 @@ components:
           type: string
           enum:
           - FURNITURE
-          - IT
           - OFFICE
+          - IT
         demReqsupQuantityRequired:
           description: Quantity required
           type: integer
@@ -391,8 +391,8 @@ components:
           type: string
           enum:
           - FURNITURE
-          - IT
           - OFFICE
+          - IT
         demReqTitle:
           description: Title
           type: string
@@ -806,8 +806,8 @@ paths:
           type: string
           enum:
           - FURNITURE
-          - IT
           - OFFICE
+          - IT
         in: query
         name: demReqSupplyType
         description: Search filter for Supply type
@@ -1424,8 +1424,8 @@ paths:
           type: string
           enum:
           - FURNITURE
-          - IT
           - OFFICE
+          - IT
         in: query
         name: demReqSupplyType
         description: Search filter for Supply type
@@ -1916,8 +1916,8 @@ paths:
           type: string
           enum:
           - FURNITURE
-          - IT
           - OFFICE
+          - IT
         in: query
         name: demReqsupReqId__demReqSupplyType
         description: Search filter for Request Supply type

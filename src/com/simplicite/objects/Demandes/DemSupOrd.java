@@ -16,9 +16,7 @@ public class DemSupOrd extends ObjectDB {
 		if(getParentObject() != null && getParentObject().getName().equals("DemOrder") && !getParentObject().getFieldValue("demOrdStatus").equals("PENDING")){
 			return false;
 		}
-		if(getParentObject() != null && getParentObject().getName().equals("DemSupply"))
-			return false;
-		return true;
+		return getParentObject() != null && !getParentObject().getName().equals("DemSupply");
 	}
 	
 	@Override
