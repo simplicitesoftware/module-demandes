@@ -10,7 +10,7 @@ import com.simplicite.commons.Demandes.DemCommon;
  */
 public class DemSupOrd extends ObjectDB {
 	private static final long serialVersionUID = 1L;
-	
+/*	
 	@Override
 	public boolean isCreateEnable() {
 		return (getParentObject() != null && !getParentObject().getName().equals("DemSupply") && getParentObject().getFieldValue("demOrdStatus").equals("PENDING"));
@@ -158,4 +158,5 @@ public class DemSupOrd extends ObjectDB {
 			demRequest.update();
 		}
 	}
+	*/
 }

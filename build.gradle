@@ -23,7 +23,7 @@ repositories {
 group = 'com.simplicite.modules'
 version = '0.1'
 description = 'Simplicite module: Demandes'
-sourceCompatibility = '13'
+sourceCompatibility = '14'
 
 dependencies {
     compile 'com.simplicite:simplicite-api:4.0.P24'

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-module-demandes
-=======
 <!--
  ___ _            _ _    _ _    __
 / __(_)_ __  _ __| (_)__(_) |_ /_/
@@ -65,12 +62,12 @@ module-demandes
     - `PURCHASE` Purchase
     - `RENTAL` Rental
 * `REQUESTSTATUS`
+    - `DRAFT` Draft
     - `PENDING` Pending
     - `VALIDATED` Validated
     - `REJECTEDMAN` Rejected manager
     - `REQUESTFUTHERINFO` Request for futher information
     - `PROCESSING` Processing
-    - `PROCESSED` Processed
     - `REJECTEDADM` rejected by administrator
     - `CLOSED` Closed
     - `CANCELLED` Cancelled
@@ -114,12 +111,15 @@ module-demandes
 | _Ref. `demReqsupReqId.demReqType`_                           | _enum(7) using `REQUESTTYPE` list_       |          |           |          | -                                                                                |
 | _Ref. `demReqsupReqId.demReqSupplyType`_                     | _enum(7) using `SUPPLYTYPE-REQ` list_    |          |           |          | -                                                                                |
 | `demReqsupSupId` link to **`DemSupply`**                     | id                                       | yes*     | yes       |          | -                                                                                |
+| _Ref. `demReqsupSupId.demSupStockQuantity`_                  | _int(10)_                                |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupSprId`_                          | _id_                                     |          |           |          | -                                                                                |
 | _Ref. `demSupSprId.demSprName`_                              | _char(100)_                              |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupName`_                           | _char(100)_                              |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupType`_                           | _enum(7) using `SUPPLYTYPE` list_        |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupAllocation`_                     | _enum(7) using `REQSUPALLOCATION` list_  |          |           |          | -                                                                                |
+| `demReqsupOrderChoice`                                       | multi(100) using `DEMREQSUPORDERCHOICE` list |          |           |          | -                                                                                |
+| `demReqsupQuantityOrdered`                                   | int(100)                                 |          |           |          | -                                                                                |
 | `demReqsupQuantityRequired`                                  | int(10)                                  | yes      |           |          | -                                                                                |
 
 ### Lists
@@ -138,10 +138,15 @@ module-demandes
 * `REQSUPALLOCATION`
     - `PURCHASE` Purchase
     - `RENTAL` Rental
+* `DEMREQSUPORDERCHOICE`
+    - `DECREASESTOCK` Decrease stock
+    - `ORDER` Order
 
 ### Custom actions
 
 * `DemRequestOrder`: 
+* `DEM_GETSTOCK`: 
+* `DEM_ORDER`: 
 
 `DemRequest` business object definition
 ---------------------------------------
@@ -169,12 +174,12 @@ module-demandes
     - `PURCHASE` Purchase
     - `RENTAL` Rental
 * `REQUESTSTATUS`
+    - `DRAFT` Draft
     - `PENDING` Pending
     - `VALIDATED` Validated
     - `REJECTEDMAN` Rejected manager
     - `REQUESTFUTHERINFO` Request for futher information
     - `PROCESSING` Processing
-    - `PROCESSED` Processed
     - `REJECTEDADM` rejected by administrator
     - `CLOSED` Closed
     - `CANCELLED` Cancelled
@@ -221,12 +226,12 @@ module-demandes
     - `NOBUDGET` No budget
     - `UNAVAILABLE` Unavailable
 * `REQUESTSTATUS`
+    - `DRAFT` Draft
     - `PENDING` Pending
     - `VALIDATED` Validated
     - `REJECTEDMAN` Rejected manager
     - `REQUESTFUTHERINFO` Request for futher information
     - `PROCESSING` Processing
-    - `PROCESSED` Processed
     - `REJECTEDADM` rejected by administrator
     - `CLOSED` Closed
     - `CANCELLED` Cancelled
@@ -322,4 +327,3 @@ module-demandes
 
 
 
->>>>>>> 5973d7689911e16aaef3051677664431788f30b5

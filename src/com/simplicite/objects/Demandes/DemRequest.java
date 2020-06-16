@@ -49,6 +49,8 @@ public class DemRequest extends ObjectDB {
 		if((("PENDING").equals(getFieldValue("demReqStatus")) && getFieldValue("demReqFutherInformation").equals(""))){
 			DemCommon.setUpdatableFieldsRequest(this);
 		}
+		if(("DRAFT").equals(getFieldValue("demReqStatus")))
+			DemCommon.setUpdatableFieldsRequest(this);
 		if(!("REQUESTFUTHERINFO").equals(getFieldValue("demReqStatus"))){
 			getField("demReqFutherInformation").setUpdatable(false);
 		}

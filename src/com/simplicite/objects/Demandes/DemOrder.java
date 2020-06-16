@@ -10,7 +10,7 @@ import com.simplicite.commons.Demandes.DemCommon;
  */
 public class DemOrder extends ObjectDB {
 	private static final long serialVersionUID = 1L;
-	@Override
+/*	@Override
 	public void initCreate() {
 		setFieldValue("demOrdReference",  DemCommon.getNumero(getGrant(), "dem_ord_reference", "dem_order", "ORD"));
 		setFieldValue("demOrdOrderDate", Tool.getCurrentDate());
@@ -50,4 +50,5 @@ public class DemOrder extends ObjectDB {
 		}
 		return null;
 	}
+	*/
 }
