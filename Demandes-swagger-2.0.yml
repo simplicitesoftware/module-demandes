@@ -118,8 +118,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -481,8 +481,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -599,8 +599,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqsupReqId__demReqSupplyType
         description: Search filter for Request Supply type
@@ -655,16 +655,16 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqsupOrderChoice
         description: Search filter for Order or decrease stock
         type: string
         required: false
         enum:
-        - ORDER
         - DECREASESTOCK
+        - ORDER
       - in: query
         name: demReqsupQuantityOrdered
         description: Search filter for Quantity ordered
@@ -922,8 +922,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demSupSprId
         description: Search filter for Supplier
@@ -1948,8 +1948,8 @@ definitions:
         items:
           type: string
           enum:
-          - ORDER
           - DECREASESTOCK
+          - ORDER
       demReqsupSupId__demSupName:
         description: Supply Name
         type: string
@@ -1960,14 +1960,14 @@ definitions:
         description: Request Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqsupSupId__demSupAllocation:
         description: Supply Allocation
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqsupSupId__demSupSprId:
         description: Supply Supplier
         type: string
@@ -2069,8 +2069,8 @@ definitions:
         description: Allocation
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       row_id:
         description: Unique technical row ID
         type: string
@@ -2112,8 +2112,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqReason:
         description: Reason of the request
         type: string
@@ -2201,8 +2201,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqReason:
         description: Reason of the request
         type: string

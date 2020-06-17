@@ -1,4 +1,4 @@
-package com.simplicite.objects.Demandes;
+ package com.simplicite.objects.Demandes;
 
 import java.util.*;
 import com.simplicite.util.*;
@@ -26,18 +26,13 @@ public class DemReqSup extends ObjectDB {
 	public boolean isCreateEnable() {
 		ObjectDB parentObject = getParentObject();
 		if(parentObject != null && parentObject.getName().equals("DemRequest") 
-			&& ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) 
-			&& !parentObject.getFieldValue("demReqFutherInformation").isEmpty()){
-			return false;
+			&& ("PENDING").equals(parentObject.getFieldValue("demReqStatus"))){
+			return parentObject.getFieldValue("demReqFutherInformation").isEmpty();
 		}
-		if(parentObject != null && parentObject.getName().equals("DemRequest") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")))
+		if(parentObject != null && parentObject.getName().equals("DemRequest") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus"))  || parentObject != null && parentObject.getName().equals("DemRequest") && ("DRAFT").equals(parentObject.getFieldValue("demReqStatus")))
 			return true;
-		if(parentObject != null && parentObject.getName().equals("DemRequest"))
-			return ("DRAFT").equals(parentObject.getFieldValue("demReqStatus"));
-		if(parentObject != null && parentObject.getName().equals("DemRental") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")))
+		if(parentObject != null && parentObject.getName().equals("DemRental") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) || parentObject != null && parentObject.getName().equals("DemRental") && ("DRAFT").equals(parentObject.getFieldValue("demReqStatus")))
 			return true;
-		if(parentObject != null && parentObject.getName().equals("DemRental"))
-			return ("DRAFT").equals(parentObject.getFieldValue("demReqStatus"));
 		if(parentObject != null && parentObject.getName().equals("DemSupply"))
 			return false;
 		return false;
@@ -60,11 +55,8 @@ public class DemReqSup extends ObjectDB {
 	
 	@Override
 	public void initCreate() {
-		if(getParentObject() != null && getParentObject().getName().equals("DemRequest") && ("PENDING").equals(getParentObject().getFieldValue("demReqStatus"))){
+		if(getParentObject() != null && getParentObject().getName().equals("DemRequest") && ("PENDING").equals(getParentObject().getFieldValue("demReqStatus")) || getParentObject() != null && getParentObject().getName().equals("DemRequest") && ("DRAFT").equals(getParentObject().getFieldValue("demReqStatus"))){
 			getField("demReqsupQuantityRequired").setUpdatable(true);
-		}
-		if(getParentObject() != null && getParentObject().getName().equals("DemRequest")){
-			getField("demReqsupQuantityRequired").setUpdatable(("DRAFT").equals(getParentObject().getFieldValue("demReqStatus")));
 		}
 		if(getParentObject() != null && getParentObject().getName().equals("DemRental")){
 			getField("demReqsupQuantityRequired").setUpdatable(true);
@@ -77,9 +69,7 @@ public class DemReqSup extends ObjectDB {
 			action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemRequest")){
 			return getParentObject().getFieldValue("demReqStatus").equals("PROCESSING");
 		}
-		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemSupply") || action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemSupply"))
-			return false;
-		if(getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_GETSTOCK") || getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_ORDER"))
+		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemSupply") || action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemSupply") ||(getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_GETSTOCK") || getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_ORDER")))
 			return false;
 		return true;
 	}
