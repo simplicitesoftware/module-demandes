@@ -1,4 +1,4 @@
- package com.simplicite.objects.Demandes;
+package com.simplicite.objects.Demandes;
 
 import java.util.*;
 import com.simplicite.util.*;
@@ -29,11 +29,12 @@ public class DemReqSup extends ObjectDB {
 			&& ("PENDING").equals(parentObject.getFieldValue("demReqStatus"))){
 			return parentObject.getFieldValue("demReqFutherInformation").isEmpty();
 		}
-		if(parentObject != null && parentObject.getName().equals("DemRequest") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus"))  || parentObject != null && parentObject.getName().equals("DemRequest") && ("DRAFT").equals(parentObject.getFieldValue("demReqStatus")))
-			return true;
-		if(parentObject != null && parentObject.getName().equals("DemRental") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) || parentObject != null && parentObject.getName().equals("DemRental") && ("DRAFT").equals(parentObject.getFieldValue("demReqStatus")))
-			return true;
-		return parentObject != null && !parentObject.getName().equals("DemSupply");
+		if(parentObject != null && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) || parentObject != null && ("DRAFT").equals(parentObject.getFieldValue("demReqStatus")))
+			return parentObject.getName().equals("DemRequest") || parentObject.getName().equals("DemRental");
+	
+		else 
+			return false;
+
 	}
 	
 	@Override

@@ -232,8 +232,8 @@ components:
           items:
             type: string
             enum:
-            - UNAVAILABLE
             - NOBUDGET
+            - UNAVAILABLE
         row_id:
           description: Unique technical row ID
           type: string
@@ -259,8 +259,8 @@ components:
           items:
             type: string
             enum:
-            - NOTNECESSARY
             - NOBUDGET
+            - NOTNECESSARY
     ArrayOfDemRequestHistoric:
       type: array
       items:
@@ -335,8 +335,8 @@ components:
           items:
             type: string
             enum:
-            - UNAVAILABLE
             - NOBUDGET
+            - UNAVAILABLE
         row_id:
           description: Unique technical row ID
           type: string
@@ -359,8 +359,8 @@ components:
           items:
             type: string
             enum:
-            - NOTNECESSARY
             - NOBUDGET
+            - NOTNECESSARY
     ArrayOfDemSupplier:
       type: array
       items:
@@ -642,8 +642,8 @@ paths:
       - schema:
           type: string
           enum:
-          - UNAVAILABLE
           - NOBUDGET
+          - UNAVAILABLE
         in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -651,8 +651,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOTNECESSARY
           - NOBUDGET
+          - NOTNECESSARY
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
@@ -1070,8 +1070,8 @@ paths:
       - schema:
           type: string
           enum:
-          - UNAVAILABLE
           - NOBUDGET
+          - UNAVAILABLE
         in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -1079,8 +1079,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOTNECESSARY
           - NOBUDGET
+          - NOTNECESSARY
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
