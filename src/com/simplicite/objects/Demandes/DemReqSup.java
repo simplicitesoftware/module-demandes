@@ -67,7 +67,10 @@ public class DemReqSup extends ObjectDB {
 			action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemRequest")){
 			return getParentObject().getFieldValue("demReqStatus").equals("PROCESSING");
 		}
-		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemSupply") || action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemSupply") ||(getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_GETSTOCK") || getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_ORDER")))
+		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemSupply") 
+		|| action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemSupply") 
+		|| getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_GETSTOCK") 
+		|| getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_ORDER"))
 			return false;
 		return true;
 	}
