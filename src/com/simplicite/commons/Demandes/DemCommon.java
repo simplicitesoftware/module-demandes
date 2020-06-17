@@ -17,7 +17,6 @@ public class DemCommon implements java.io.Serializable {
 		long num = 1;
 		String year = Tool.getCurrentYear().substring(2);
 		String lastNum =g.simpleQuery("select "+ sqlRef + " from " + sqlTable + " order by " + sqlRef + " desc fetch first 1 row only");
-		
 		// Si aucun résultat (premier dossier) ou année courante => Incrément ; Sinon, défaut = 1
 		if(!Tool.isEmpty(lastNum) && lastNum.substring(0,2).equals(year))
 			num = Long.valueOf(lastNum.substring(5))+1;
@@ -58,6 +57,29 @@ public class DemCommon implements java.io.Serializable {
 		obj.getField("demReqTitle").setUpdatable(true);
 		obj.getField("demReqReason").setUpdatable(true);
 		obj.getField("demReqSupplyType").setUpdatable(true);
+	}
+	
+	public static String setStockQuantityRental(ObjectDB obj, Grant g){
+		ObjectDB demReqSup = g.getTmpObject("DemReqSup");
+		synchronized(demReqSup){
+			demReqSup.resetFilters();
+			demReqSup.setFieldFilter("demReqsupReqId", obj.getRowId());
+			List<String[]> listReqSup = demReqSup.search();
+			for(int i = 0; i < listReqSup.size(); i++){
+				demReqSup.setValues(listReqSup.get(i));
+				int quantiteRequired = Tool.parseInt(demReqSup.getFieldValue("demReqsupQuantityRequired"));
+				ObjectDB demSup = g.getTmpObject("DemSupply");
+				synchronized(demSup){
+					demSup.select(demReqSup.getFieldValue("demReqsupSupId"));
+					int quantiteStock = Tool.parseInt(demSup.getFieldValue("demSupStockQuantity"));
+					if(quantiteRequired > quantiteStock)
+						return Message.formatSimpleError("Stock insuffisant");
+					demSup.setFieldValue("demSupStockQuantity", quantiteStock - quantiteRequired );
+					demSup.update();
+				}
+			}
+			return Message.formatSimpleInfo("Modification du stock");
+		}
 	}
 
 }

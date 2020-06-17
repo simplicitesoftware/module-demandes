@@ -3,6 +3,7 @@ package com.simplicite.objects.Demandes;
 import java.util.*;
 import com.simplicite.util.*;
 import com.simplicite.util.tools.*;
+import com.simplicite.commons.Demandes.DemCommon;
 
 /**
  * Business object DemReqSup
@@ -26,18 +27,20 @@ public class DemReqSup extends ObjectDB {
 		ObjectDB parentObject = getParentObject();
 		if(parentObject != null && parentObject.getName().equals("DemRequest") 
 			&& ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) 
-			&& !parentObject.getFieldValue("demReqFutherInformation").equals("")){
+			&& !parentObject.getFieldValue("demReqFutherInformation").isEmpty()){
 			return false;
 		}
 		if(parentObject != null && parentObject.getName().equals("DemRequest") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")))
 			return true;
 		if(parentObject != null && parentObject.getName().equals("DemRequest"))
 			return ("DRAFT").equals(parentObject.getFieldValue("demReqStatus"));
+		if(parentObject != null && parentObject.getName().equals("DemRental") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")))
+			return true;
+		if(parentObject != null && parentObject.getName().equals("DemRental"))
+			return ("DRAFT").equals(parentObject.getFieldValue("demReqStatus"));
 		if(parentObject != null && parentObject.getName().equals("DemSupply"))
 			return false;
-		if(parentObject != null && parentObject.getName().equals("DemRental"))
-			return ("PENDING").equals(parentObject.getFieldValue("demReqStatus"));
-		return true;
+		return false;
 	}
 	
 	@Override
@@ -70,15 +73,13 @@ public class DemReqSup extends ObjectDB {
 		
 	@Override
 	public boolean isActionEnable(String[] row, String action) {
-	/*	if(action.equals("DemRequestOrder")){
-			String statut = getGrant().getParameter("demreqstat");
-			return statut.equals("PROCESSING");	
-		}
-	*/	if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemRequest")||
+		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemRequest")||
 			action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemRequest")){
 			return getParentObject().getFieldValue("demReqStatus").equals("PROCESSING");
 		}
 		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemSupply") || action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemSupply"))
+			return false;
+		if(getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_GETSTOCK") || getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_ORDER"))
 			return false;
 		return true;
 	}
@@ -90,21 +91,22 @@ public class DemReqSup extends ObjectDB {
 			resetFilters();
 			setFieldFilter("demReqsupReqId",getParentObject().getRowId());
 			List<String[]> reqSupList = search();
-			AppLog.info(DemReqSup.class,"postupdate", "size lsit = " + reqSupList.size(), getGrant());
 			for(int i = 0; i < reqSupList.size(); i++){
 				setValues(reqSupList.get(i));
-				AppLog.info(DemReqSup.class,"postupdate", "getFieldValue = " + getFieldValue("demReqsupQuantityRequired"), getGrant());
 				if(!getFieldValue("demReqsupQuantityRequired").equals("0"))
 					isRequestComplete = false;
+				ObjectDB demSprReq = getGrant().getTmpObject("DemSprReq");
+				synchronized(demSprReq){
+					demSprReq.setFieldValue("demSprreqReqId", getFieldValue("demReqsupReqId"));
+					demSprReq.setFieldValue("demSprreqSprId", getFieldValue("demReqsupSupId.demSupSprId"));
+					demSprReq.create();
+				}
 			}
 			if(isRequestComplete){
 				getParentObject().setFieldValue("demReqStatus", "CLOSED");
 				getParentObject().update();
 			}
 		}
-		//return Message.formatInfo("INFO_CODE", "Message", "fieldName");
-		//return Message.formatWarning("WARNING_CODE", "Message", "fieldName");
-		//return Message.formatError("ERROR_CODE", "Message", "fieldName");
 		return null;
 	}
 	
@@ -166,20 +168,11 @@ public class DemReqSup extends ObjectDB {
 			}
 		}
 	}
-/*		
-	public String createOrder(){
-		try {
-			ObjectDB demReqOrd = getGrant().getTmpObject("DemReqOrd");
-			synchronized(demReqOrd){
-				demReqOrd.setFieldValue("demReqordReqId", getFieldValue("demReqsupReqId"));
-			}
-			getGrant().setParameter("placeorder_demReqId", getFieldValue("demReqsupReqId"));
-			getGrant().setParameter("placeorder_demSupRef", getFieldValue("demReqsupSupId.demSupReference"));
-			return "REDIRECT:"+HTMLTool.getFormURL("DemSupOrd","the_ajax_demSupOrd", ObjectField.DEFAULT_ROW_ID, "nav=new&action=create");
-		}
-		catch(Exception e) {
-			return e.getMessage()+"#ERROR";
-		}
-	} 
-*/	
+	
+	@Override
+	public String[] getTargetObject(String rowId, String[] row) {
+		if(DemCommon.verifTargetObject(rowId, row, getParentObject(), this) != null)
+			return DemCommon.getTargetObjectCom(row, "DemSupply", "DemRequest", "demReqsupSupId", "demReqsupReqId", getParentObject(), this);
+		return null;
+	}
 }

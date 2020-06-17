@@ -22,5 +22,4 @@ public class DemSprReq extends ObjectDB {
 	public boolean isCreateEnable() {
 		return false;
 	}
-	
 }

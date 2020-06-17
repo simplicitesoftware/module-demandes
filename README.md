@@ -13,30 +13,6 @@
 
 
 
-`DemOrder` business object definition
--------------------------------------
-
-
-
-### Fields
-
-| Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
-| ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
-| `demOrdReference`                                            | char(100)                                | yes*     | yes       |          | -                                                                                |
-| `demOrdQuantityTotal`                                        | int(10)                                  |          | yes       |          | -                                                                                |
-| `demOrdOrderDate`                                            | date                                     |          | yes       |          | -                                                                                |
-| `demOrdPriceTotal`                                           | float(10, 0)                             |          | yes       |          | -                                                                                |
-| `demOrdStatus`                                               | enum(7) using `DEMORDSTATUS` list        |          | yes       |          | -                                                                                |
-
-### Lists
-
-* `DEMORDSTATUS`
-    - `PENDING` Pending order
-    - `PLACED` Order placed
-    - `VALIDATED` Validated
-    - `SHIPPED` Shipped
-    - `DELIVERED` Delivered
-
 `DemRental` business object definition
 --------------------------------------
 
@@ -47,9 +23,7 @@
 | Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
 | ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
 | `demRenStartDate`                                            | datetime                                 | yes      |           |          | -                                                                                |
-| `demReqReference`                                            | char(100)                                | yes*     |           |          | -                                                                                |
 | `demRenEndDate`                                              | datetime                                 | yes      |           |          | -                                                                                |
-| `demReqTitle`                                                | char(100)                                |          |           |          | -                                                                                |
 | `demRenEquipmentCondition`                                   | char(100)                                |          | yes       |          | -                                                                                |
 | `demReqType`                                                 | enum(7) using `REQUESTTYPE` list         |          |           |          | -                                                                                |
 | `demReqStatus`                                               | enum(7) using `REQUESTSTATUS` list       |          | yes       |          | -                                                                                |
@@ -78,23 +52,8 @@
 
 ### Custom actions
 
+* `REQUESTSTATUS-PENDING-VALIDATED-RENTAL`: 
 * `REQUESTSTATUS-PENDING-REJECTED-RENTAL`: 
-
-`DemReqOrd` business object definition
---------------------------------------
-
-
-
-### Fields
-
-| Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
-| ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
-| `demReqordReqId` link to **`DemRequest`**                    | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demReqordReqId.demReqReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
-| _Ref. `demReqordReqId.demReqTitle`_                          | _char(100)_                              |          |           |          | -                                                                                |
-| _Ref. `demReqordReqId.demReqRequestDate`_                    | _date_                                   |          |           |          | -                                                                                |
-| `demReqordOrdId` link to **`DemOrder`**                      | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demReqordOrdId.demOrdReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
 
 `DemReqSup` business object definition
 --------------------------------------
@@ -106,7 +65,7 @@
 | Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
 | ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
 | `demReqsupReqId` link to **`DemRequest`**                    | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demReqsupReqId.demReqReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
+| _Ref. `demReqsupReqId.demReqReference`_                      | _char(10)_                               |          |           |          | -                                                                                |
 | _Ref. `demReqsupReqId.demReqTitle`_                          | _char(100)_                              |          |           |          | -                                                                                |
 | _Ref. `demReqsupReqId.demReqType`_                           | _enum(7) using `REQUESTTYPE` list_       |          |           |          | -                                                                                |
 | _Ref. `demReqsupReqId.demReqSupplyType`_                     | _enum(7) using `SUPPLYTYPE-REQ` list_    |          |           |          | -                                                                                |
@@ -144,7 +103,6 @@
 
 ### Custom actions
 
-* `DemRequestOrder`: 
 * `DEM_GETSTOCK`: 
 * `DEM_ORDER`: 
 
@@ -157,7 +115,7 @@
 
 | Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
 | ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
-| `demReqReference`                                            | char(100)                                | yes*     |           |          | -                                                                                |
+| `demReqReference`                                            | char(10)                                 | yes*     |           |          | -                                                                                |
 | `demReqTitle`                                                | char(100)                                |          |           |          | -                                                                                |
 | `demReqType`                                                 | enum(7) using `REQUESTTYPE` list         |          |           |          | -                                                                                |
 | `demReqStatus`                                               | enum(7) using `REQUESTSTATUS` list       |          | yes       |          | -                                                                                |
@@ -196,6 +154,7 @@
 
 ### Custom actions
 
+* `REQUESTSTATUS-PENDING-VALIDATED`: Transition
 * `REQUESTSTATUS-PENDING-REJECTEDMAN`: Transition
 * `REQUESTSTATUS-VALIDATED-REJECTEDADM`: 
 
@@ -212,7 +171,6 @@
 | `row_idx`                                                    | int(11)                                  | yes*     | yes       |          | -                                                                                |
 | `created_by_hist`                                            | char(100)                                | yes*     |           |          | -                                                                                |
 | `created_dt_hist`                                            | datetime                                 | yes*     |           |          | -                                                                                |
-| `demReqReference`                                            | char(100)                                | yes*     |           |          | -                                                                                |
 | `demReqRejectedReasonManager`                                | multi(500) using `DEMREQUESTREJECTEDREASONMANAGER` list |          |           |          | -                                                                                |
 | `demReqRejectedReasonAdministrator`                          | multi(500) using `DEMREQREJECTEDREASONADMINISTRATOR` list |          |           |          | -                                                                                |
 | `demReqStatus`                                               | enum(7) using `REQUESTSTATUS` list       |          | yes       |          | -                                                                                |
@@ -248,27 +206,7 @@
 | `demSprreqSprId` link to **`DemSupplier`**                   | id                                       | yes*     | yes       |          | -                                                                                |
 | _Ref. `demSprreqSprId.demSprName`_                           | _char(100)_                              |          |           |          | -                                                                                |
 | `demSprreqReqId` link to **`DemRequest`**                    | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demSprreqReqId.demReqReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
-
-`DemSupOrd` business object definition
---------------------------------------
-
-
-
-### Fields
-
-| Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
-| ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
-| `demSupordSupId` link to **`DemSupply`**                     | id                                       | yes*     |           |          | -                                                                                |
-| _Ref. `demSupordSupId.demSupReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
-| _Ref. `demSupordSupId.demSupSprId`_                          | _id_                                     |          |           |          | -                                                                                |
-| _Ref. `demSupSprId.demSprName`_                              | _char(100)_                              |          |           |          | -                                                                                |
-| _Ref. `demSupordSupId.demSupName`_                           | _char(100)_                              |          |           |          | -                                                                                |
-| _Ref. `demSupordSupId.demSupStockQuantity`_                  | _int(10)_                                |          |           |          | -                                                                                |
-| _Ref. `demSupordSupId.demSupPrice`_                          | _float(10, 0)_                           |          |           |          | -                                                                                |
-| `demSupordOrdId` link to **`DemOrder`**                      | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demSupordOrdId.demOrdReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
-| `demSupordQuantityOrdered`                                   | int(10)                                  |          | yes       |          | -                                                                                |
+| _Ref. `demSprreqReqId.demReqReference`_                      | _char(10)_                               |          |           |          | -                                                                                |
 
 `DemSupplier` business object definition
 ----------------------------------------
@@ -294,7 +232,7 @@
 
 | Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
 | ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
-| `demSupReference`                                            | char(100)                                | yes*     | yes       |          | -                                                                                |
+| `demSupReference`                                            | char(100)                                | yes*     |           |          | -                                                                                |
 | `demSupName`                                                 | char(100)                                |          | yes       |          | -                                                                                |
 | `demSupType`                                                 | enum(7) using `SUPPLYTYPE` list          | yes      | yes       |          | -                                                                                |
 | `demSupDescription`                                          | text(500)                                |          | yes       |          | -                                                                                |

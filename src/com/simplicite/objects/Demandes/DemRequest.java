@@ -46,7 +46,7 @@ public class DemRequest extends ObjectDB {
 	
 	@Override
 	public void initUpdate() {
-		if((("PENDING").equals(getFieldValue("demReqStatus")) && getFieldValue("demReqFutherInformation").equals(""))){
+		if((("PENDING").equals(getFieldValue("demReqStatus")) && getFieldValue("demReqFutherInformation").isEmpty())){
 			DemCommon.setUpdatableFieldsRequest(this);
 		}
 		if(("DRAFT").equals(getFieldValue("demReqStatus")))
@@ -69,9 +69,9 @@ public class DemRequest extends ObjectDB {
 	
 	@Override
 	public String preSave() {
-		if(!getFieldValue("demReqRejectedReasonAdministrator").equals("") && getGrant().hasResponsibility("DEM_ADMINISTRATOR") || !getFieldValue("demReqRejectedReasonAdministrator").equals("") && getGrant().hasResponsibility("DEM_GROUP"))
+		if(!getFieldValue("demReqRejectedReasonAdministrator").isEmpty() && getGrant().hasResponsibility("DEM_ADMINISTRATOR") || !getFieldValue("demReqRejectedReasonAdministrator").isEmpty() && getGrant().hasResponsibility("DEM_GROUP"))
 			setFieldValue("demReqStatus", "REJECTEDADM");
-		if(!getFieldValue("demReqRejectedReasonManager").equals("") && getGrant().hasResponsibility("DEM_MANAGERS") || !getFieldValue("demReqRejectedReasonManager").equals("") && getGrant().hasResponsibility("DEM_GROUP"))
+		if(!getFieldValue("demReqRejectedReasonManager").isEmpty() && getGrant().hasResponsibility("DEM_MANAGERS") || !getFieldValue("demReqRejectedReasonManager").isEmpty() && getGrant().hasResponsibility("DEM_GROUP"))
 			setFieldValue("demReqStatus", "REJECTEDMAN");
 		return null;
 	}
@@ -88,5 +88,10 @@ public class DemRequest extends ObjectDB {
 			rejectedReason.setValue(params.get("demRejectedReasonAdministrator"));
 			save();
 		}
+	}
+	
+	public void setStatusValidate(){
+		setFieldValue("demReqStatus", "VALIDATED");
+		update();
 	}
 }
