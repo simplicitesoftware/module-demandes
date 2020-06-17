@@ -63,16 +63,14 @@ public class DemReqSup extends ObjectDB {
 		
 	@Override
 	public boolean isActionEnable(String[] row, String action) {
-		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemRequest")||
-			action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemRequest")){
-			return getParentObject().getFieldValue("demReqStatus").equals("PROCESSING");
-		}
-		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemSupply") 
-		|| action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemSupply") 
-		|| getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_GETSTOCK") 
-		|| getParentObject() != null && getParentObject().getName().equals("DemRental") && action.equals("DEM_ORDER"))
-			return false;
-		return true;
+		if(action.equals("DEM_GETSTOCK") && getParentObject() != null && getParentObject().getName().equals("DemRequest") && !getParentObject().getFieldValue("demReqStatus").equals("PROCESSING") 
+		|| action.equals("DEM_ORDER") && getParentObject() != null && getParentObject().getName().equals("DemRequest") && !getParentObject().getFieldValue("demReqStatus").equals("PROCESSING")
+		||  action.equals("DEM_ORDER") && getParentObject() != null && !getParentObject().getName().equals("DemRequest") 
+		|| action.equals("DEM_GETSTOCK") && getParentObject() != null &&! getParentObject().getName().equals("DemRequest"))
+			{
+				return false;
+			} else
+				return true;
 	}
 	
 	@Override
