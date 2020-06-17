@@ -33,9 +33,7 @@ public class DemReqSup extends ObjectDB {
 			return true;
 		if(parentObject != null && parentObject.getName().equals("DemRental") && ("PENDING").equals(parentObject.getFieldValue("demReqStatus")) || parentObject != null && parentObject.getName().equals("DemRental") && ("DRAFT").equals(parentObject.getFieldValue("demReqStatus")))
 			return true;
-		if(parentObject != null && parentObject.getName().equals("DemSupply"))
-			return false;
-		return false;
+		return parentObject != null && !parentObject.getName().equals("DemSupply");
 	}
 	
 	@Override
