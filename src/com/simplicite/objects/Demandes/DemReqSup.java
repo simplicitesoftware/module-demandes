@@ -69,8 +69,9 @@ public class DemReqSup extends ObjectDB {
 		|| action.equals("DEM_GETSTOCK") && getParentObject() != null &&! getParentObject().getName().equals("DemRequest"))
 			{
 				return false;
-			} else
+			} else {
 				return true;
+			}
 	}
 	
 	@Override
