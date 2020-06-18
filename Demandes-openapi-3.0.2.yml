@@ -23,7 +23,7 @@ components:
           description: Supply
           type: string
         demReqsupSupId__demSupSprId__demSprName:
-          description: Supply Supplier Name
+          description: Supply Suppliers Name
           type: string
         demReqsupSupId__demSupStockQuantity:
           description: Supply Stock quantity
@@ -47,8 +47,8 @@ components:
           items:
             type: string
             enum:
-            - DECREASESTOCK
             - ORDER
+            - DECREASESTOCK
         demReqsupSupId__demSupName:
           description: Supply Name
           type: string
@@ -59,16 +59,16 @@ components:
           description: Request Type
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqsupSupId__demSupAllocation:
           description: Supply Allocation
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqsupSupId__demSupSprId:
-          description: Supply Supplier
+          description: Supply Suppliers
           type: string
         demReqsupSupId__demSupReference:
           description: Supply Reference
@@ -141,10 +141,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/DemSupply'
-    ArrayOfDemSprReq:
-      type: array
-      items:
-        $ref: '#/components/schemas/DemSprReq'
     DemSupply:
       type: object
       properties:
@@ -168,13 +164,13 @@ components:
           description: Allocation
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         row_id:
           description: Unique technical row ID
           type: string
         demSupSprId:
-          description: Supplier
+          description: Suppliers
           type: string
         demSupStockQuantity:
           description: Stock quantity
@@ -186,7 +182,7 @@ components:
           description: Price
           type: number
         demSupSprId__demSprName:
-          description: Supplier Name
+          description: Suppliers Name
           type: string
     PublicationResult:
       type: object
@@ -211,8 +207,8 @@ components:
           description: Type
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqReason:
           description: Reason of the request
           type: string
@@ -232,8 +228,8 @@ components:
           items:
             type: string
             enum:
-            - NOBUDGET
             - UNAVAILABLE
+            - NOBUDGET
         row_id:
           description: Unique technical row ID
           type: string
@@ -259,8 +255,8 @@ components:
           items:
             type: string
             enum:
-            - NOBUDGET
             - NOTNECESSARY
+            - NOBUDGET
     ArrayOfDemRequestHistoric:
       type: array
       items:
@@ -300,8 +296,8 @@ components:
           description: Type
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         demReqReason:
           description: Reason of the request
           type: string
@@ -335,8 +331,8 @@ components:
           items:
             type: string
             enum:
-            - NOBUDGET
             - UNAVAILABLE
+            - NOBUDGET
         row_id:
           description: Unique technical row ID
           type: string
@@ -359,8 +355,8 @@ components:
           items:
             type: string
             enum:
-            - NOBUDGET
             - NOTNECESSARY
+            - NOBUDGET
     ArrayOfDemSupplier:
       type: array
       items:
@@ -385,24 +381,6 @@ components:
         item:
           description: Object item with lists of linked objects' items
           type: object
-    DemSprReq:
-      type: object
-      properties:
-        demSprreqSprId__demSprName:
-          description: Supplier Name
-          type: string
-        demSprreqSprId:
-          description: Supplier
-          type: string
-        demSprreqReqId__demReqReference:
-          description: Request Reference
-          type: string
-        row_id:
-          description: Unique technical row ID
-          type: string
-        demSprreqReqId:
-          description: Request
-          type: string
     Error400:
       type: object
       properties:
@@ -589,8 +567,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqType
         description: Search filter for Type
@@ -642,8 +620,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOBUDGET
           - UNAVAILABLE
+          - NOBUDGET
         in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -651,8 +629,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOBUDGET
           - NOTNECESSARY
+          - NOBUDGET
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
@@ -1017,8 +995,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqType
         description: Search filter for Type
@@ -1070,8 +1048,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOBUDGET
           - UNAVAILABLE
+          - NOBUDGET
         in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -1079,8 +1057,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOBUDGET
           - NOTNECESSARY
+          - NOBUDGET
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
@@ -1153,8 +1131,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqsupReqId__demReqType
         description: Search filter for Request Type
@@ -1176,6 +1154,12 @@ paths:
         description: Search filter for Supply
         required: false
       - schema:
+          type: string
+        in: query
+        name: demReqsupSupId__demSupReference
+        description: Search filter for Supply Reference
+        required: false
+      - schema:
           type: integer
         in: query
         name: demReqsupSupId__demSupStockQuantity
@@ -1184,20 +1168,14 @@ paths:
       - schema:
           type: string
         in: query
-        name: demReqsupSupId__demSupReference
-        description: Search filter for Supply Reference
-        required: false
-      - schema:
-          type: string
-        in: query
         name: demReqsupSupId__demSupSprId
-        description: Search filter for Supply Supplier
+        description: Search filter for Supply Suppliers
         required: false
       - schema:
           type: string
         in: query
         name: demReqsupSupId__demSupSprId__demSprName
-        description: Search filter for Supply Supplier Name
+        description: Search filter for Supply Suppliers Name
         required: false
       - schema:
           type: string
@@ -1218,8 +1196,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demReqsupSupId__demSupAllocation
         description: Search filter for Supply Allocation
@@ -1227,8 +1205,8 @@ paths:
       - schema:
           type: string
           enum:
-          - DECREASESTOCK
           - ORDER
+          - DECREASESTOCK
         in: query
         name: demReqsupOrderChoice
         description: Search filter for Order or decrease stock
@@ -1536,8 +1514,8 @@ paths:
       - schema:
           type: string
           enum:
-          - PURCHASE
           - RENTAL
+          - PURCHASE
         in: query
         name: demSupAllocation
         description: Search filter for Allocation
@@ -1546,13 +1524,13 @@ paths:
           type: string
         in: query
         name: demSupSprId
-        description: Search filter for Supplier
+        description: Search filter for Suppliers
         required: false
       - schema:
           type: string
         in: query
         name: demSupSprId__demSprName
-        description: Search filter for Supplier Name
+        description: Search filter for Suppliers Name
         required: false
       tags:
       - DemSupply
@@ -1857,201 +1835,6 @@ paths:
         required: false
       tags:
       - DemRequestHistoric
-  /rest/DemSprReq/{row_id}:
-    post:
-      summary: Create a new DemSprReqbusiness object record
-      security:
-      - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DemSprReq'
-      operationId: obj-demsprreq-create
-      responses:
-        '200':
-          description: Success in creating a new business object record
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemSprReq'
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error400'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error401'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error500'
-      parameters:
-      - schema:
-          type: string
-        in: path
-        name: row_id
-        description: Row ID (or empty or _ for all row IDs)
-        required: true
-      tags:
-      - DemSprReq
-    get:
-      summary: Get a DemSprReq business object record
-      security:
-      - bearerAuth: []
-      operationId: obj-demsprreq-get
-      responses:
-        '200':
-          description: Success in getting a single business object record
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemSprReq'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error401'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error500'
-        '404':
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error404'
-      parameters:
-      - schema:
-          type: string
-        in: path
-        name: row_id
-        description: Row ID (or empty or _ for all row IDs)
-        required: true
-      - schema:
-          type: boolean
-        in: query
-        name: _inline_documents
-        description: Inline documents?
-        required: false
-      - schema:
-          type: boolean
-        in: query
-        name: _inline_thumbnails
-        description: Inline documents' thumbnails?
-        required: false
-      - schema:
-          type: boolean
-        in: query
-        name: _inline_objects
-        description: Inline objects?
-        required: false
-      tags:
-      - DemSprReq
-    delete:
-      summary: Delete a DemSprReq business object record
-      security:
-      - bearerAuth: []
-      operationId: obj-demsprreq-delete
-      responses:
-        '200':
-          description: Success in deleting a business object record
-          content:
-            application/json: {}
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error400'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error401'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error500'
-        '404':
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error404'
-      parameters:
-      - schema:
-          type: string
-        in: path
-        name: row_id
-        description: Row ID (or empty or _ for all row IDs)
-        required: true
-      tags:
-      - DemSprReq
-    put:
-      summary: Update a DemSprReqbusiness object record
-      security:
-      - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DemSprReq'
-      operationId: obj-demsprreq-update
-      responses:
-        '200':
-          description: Success in updating a business object record
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemSprReq'
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error400'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error401'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error500'
-        '404':
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error404'
-      parameters:
-      - schema:
-          type: string
-        in: path
-        name: row_id
-        description: Row ID (or empty or _ for all row IDs)
-        required: true
-      tags:
-      - DemSprReq
   /rest/DemSupply/{row_id}:
     post:
       summary: Create a new DemSupplybusiness object record
@@ -2442,77 +2225,6 @@ paths:
         required: true
       tags:
       - DemRequestHistoric
-  /rest/DemSprReq:
-    get:
-      summary: Search DemSprReq business object records or get contextualized metadata
-      security:
-      - bearerAuth: []
-      operationId: obj-demsprreq-search
-      responses:
-        '200':
-          description: Success in searching business object records (or in getting
-            contextualized business object metadata, documentation, ...)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ArrayOfDemSprReq'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error401'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error500'
-      parameters:
-      - schema:
-          type: boolean
-        in: query
-        name: _metadata
-        description: Metadata?
-        required: false
-      - schema:
-          type: boolean
-        in: query
-        name: _count
-        description: Count?
-        required: false
-      - schema:
-          type: boolean
-        in: query
-        name: _doc
-        description: Documentation?
-        required: false
-      - schema:
-          type: string
-        in: query
-        name: demSprreqSprId
-        description: Search filter for Supplier
-        required: false
-      - schema:
-          type: string
-        in: query
-        name: demSprreqSprId__demSprName
-        description: Search filter for Supplier Name
-        required: false
-      - schema:
-          type: string
-        in: query
-        name: demSprreqReqId
-        description: Search filter for Request
-        required: false
-      - schema:
-          type: string
-        in: query
-        name: demSprreqReqId__demReqReference
-        description: Search filter for Request Reference
-        required: false
-      tags:
-      - DemSprReq
   /rest/DemReqSup/{row_id}:
     post:
       summary: Create a new DemReqSupbusiness object record
@@ -2728,8 +2440,6 @@ tags:
   description: Purchase request
 - name: DemRequestHistoric
   description: Request historic
-- name: DemSprReq
-  description: Request/Supplier
 - name: DemSupplier
   description: Suppliers
 - name: DemSupply

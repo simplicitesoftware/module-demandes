@@ -87,12 +87,6 @@ public class DemReqSup extends ObjectDB {
 				setValues(reqSupList.get(i));
 				if(!getFieldValue("demReqsupQuantityRequired").equals("0"))
 					isRequestComplete = false;
-				ObjectDB demSprReq = getGrant().getTmpObject("DemSprReq");
-				synchronized(demSprReq){
-					demSprReq.setFieldValue("demSprreqReqId", getFieldValue("demReqsupReqId"));
-					demSprReq.setFieldValue("demSprreqSprId", getFieldValue("demReqsupSupId.demSupSprId"));
-					demSprReq.create();
-				}
 			}
 			if(isRequestComplete){
 				getParentObject().setFieldValue("demReqStatus", "CLOSED");

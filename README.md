@@ -70,8 +70,8 @@
 | _Ref. `demReqsupReqId.demReqType`_                           | _enum(7) using `REQUESTTYPE` list_       |          |           |          | -                                                                                |
 | _Ref. `demReqsupReqId.demReqSupplyType`_                     | _enum(7) using `SUPPLYTYPE-REQ` list_    |          |           |          | -                                                                                |
 | `demReqsupSupId` link to **`DemSupply`**                     | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demReqsupSupId.demSupStockQuantity`_                  | _int(10)_                                |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupReference`_                      | _char(100)_                              |          |           |          | -                                                                                |
+| _Ref. `demReqsupSupId.demSupStockQuantity`_                  | _int(10)_                                |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupSprId`_                          | _id_                                     |          |           |          | -                                                                                |
 | _Ref. `demSupSprId.demSprName`_                              | _char(100)_                              |          |           |          | -                                                                                |
 | _Ref. `demReqsupSupId.demSupName`_                           | _char(100)_                              |          |           |          | -                                                                                |
@@ -193,20 +193,6 @@
     - `REJECTEDADM` rejected by administrator
     - `CLOSED` Closed
     - `CANCELLED` Cancelled
-
-`DemSprReq` business object definition
---------------------------------------
-
-
-
-### Fields
-
-| Name                                                         | Type                                     | Required | Updatable | Personal | Description                                                                      | 
-| ------------------------------------------------------------ | ---------------------------------------- | -------- | --------- | -------- | -------------------------------------------------------------------------------- |
-| `demSprreqSprId` link to **`DemSupplier`**                   | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demSprreqSprId.demSprName`_                           | _char(100)_                              |          |           |          | -                                                                                |
-| `demSprreqReqId` link to **`DemRequest`**                    | id                                       | yes*     | yes       |          | -                                                                                |
-| _Ref. `demSprreqReqId.demReqReference`_                      | _char(10)_                               |          |           |          | -                                                                                |
 
 `DemSupplier` business object definition
 ----------------------------------------
