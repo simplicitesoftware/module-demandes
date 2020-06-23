@@ -207,8 +207,8 @@ components:
           description: Type
           type: string
           enum:
-          - RENTAL
           - PURCHASE
+          - RENTAL
         demReqReason:
           description: Reason of the request
           type: string
@@ -228,8 +228,8 @@ components:
           items:
             type: string
             enum:
-            - UNAVAILABLE
             - NOBUDGET
+            - UNAVAILABLE
         row_id:
           description: Unique technical row ID
           type: string
@@ -255,8 +255,8 @@ components:
           items:
             type: string
             enum:
-            - NOTNECESSARY
             - NOBUDGET
+            - NOTNECESSARY
     ArrayOfDemRequestHistoric:
       type: array
       items:
@@ -335,6 +335,9 @@ components:
             - NOBUDGET
         row_id:
           description: Unique technical row ID
+          type: string
+        demReqSprId:
+          description: Suppliers
           type: string
         demReqStatus:
           description: Status
@@ -634,6 +637,12 @@ paths:
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
+        required: false
+      - schema:
+          type: string
+        in: query
+        name: demReqSprId
+        description: Search filter for Suppliers
         required: false
       tags:
       - DemRental
@@ -995,8 +1004,8 @@ paths:
       - schema:
           type: string
           enum:
-          - RENTAL
           - PURCHASE
+          - RENTAL
         in: query
         name: demReqType
         description: Search filter for Type
@@ -1048,8 +1057,8 @@ paths:
       - schema:
           type: string
           enum:
-          - UNAVAILABLE
           - NOBUDGET
+          - UNAVAILABLE
         in: query
         name: demReqRejectedReasonAdministrator
         description: Search filter for Rejected reason
@@ -1057,8 +1066,8 @@ paths:
       - schema:
           type: string
           enum:
-          - NOTNECESSARY
           - NOBUDGET
+          - NOTNECESSARY
         in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason

@@ -175,6 +175,11 @@ paths:
         enum:
         - NOTNECESSARY
         - NOBUDGET
+      - in: query
+        name: demReqSprId
+        description: Search filter for Suppliers
+        type: string
+        required: false
       tags:
       - DemRental
   /rest/DemSupplier:
@@ -481,8 +486,8 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -528,16 +533,16 @@ paths:
         type: string
         required: false
         enum:
-        - UNAVAILABLE
         - NOBUDGET
+        - UNAVAILABLE
       - in: query
         name: demReqRejectedReasonManager
         description: Search filter for Rejected reason
         type: string
         required: false
         enum:
-        - NOTNECESSARY
         - NOBUDGET
+        - NOTNECESSARY
       tags:
       - DemRequest
   /rest/DemReqSup:
@@ -1886,8 +1891,8 @@ definitions:
         description: Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       demReqReason:
         description: Reason of the request
         type: string
@@ -1907,8 +1912,8 @@ definitions:
         items:
           type: string
           enum:
-          - UNAVAILABLE
           - NOBUDGET
+          - UNAVAILABLE
       row_id:
         description: Unique technical row ID
         type: string
@@ -1934,8 +1939,8 @@ definitions:
         items:
           type: string
           enum:
-          - NOTNECESSARY
           - NOBUDGET
+          - NOTNECESSARY
   ArrayOfDemRequestHistoric:
     type: array
     items:
@@ -2014,6 +2019,9 @@ definitions:
           - NOBUDGET
       row_id:
         description: Unique technical row ID
+        type: string
+      demReqSprId:
+        description: Suppliers
         type: string
       demReqStatus:
         description: Status
