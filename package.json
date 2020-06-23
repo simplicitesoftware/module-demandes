@@ -1,10 +1,10 @@
 {
-    "date": "Thu Jun 18 10:52:49 CEST 2020",
+    "date": "Tue Jun 23 14:27:15 CEST 2020",
     "name": "Demandes",
     "format": "xml",
     "description": "",
     "files": ["Demandes.xml"],
-    "repository": {},
+    "repository": {"origin": {"uri": "https://github.com/simplicitesoftware/module-demandes.git"}},
     "version": "0.1",
     "dependencies": {"Simplicite": "4.0"}
 }

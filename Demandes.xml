@@ -7,8 +7,13 @@
 		<mdl_name>Demandes</mdl_name>
 		<mdl_version>0.1</mdl_version>
 		<mdl_prefix>dem</mdl_prefix>
-		<mdl_url/>
-		<mdl_lastupd>2020-06-18 10:52:49</mdl_lastupd>
+		<mdl_url><![CDATA[{
+    "type": "git",
+    "origin": {
+        "uri": "https://github.com/simplicitesoftware/module-demandes.git"
+    }
+}]]></mdl_url>
+		<mdl_lastupd>2020-06-23 14:27:15</mdl_lastupd>
 		<mdl_comment/>
 	</data>
 </object>
