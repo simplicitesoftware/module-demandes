@@ -8,7 +8,7 @@
   <description>Simplicite module: Demandes</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <simplicite.url>https://demandes.dev.simplicite.io</simplicite.url>
+    <simplicite.url>https://projects.dev.simplicite.io</simplicite.url>
     <simplicite.version>4.0.P24</simplicite.version>
     <maven.compiler.source>14</maven.compiler.source>
     <maven.compiler.target>14</maven.compiler.target>

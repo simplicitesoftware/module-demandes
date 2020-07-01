@@ -13,7 +13,7 @@
         "uri": "https://github.com/simplicitesoftware/module-demandes.git"
     }
 }]]></mdl_url>
-		<mdl_lastupd>2020-06-23 14:27:15</mdl_lastupd>
+		<mdl_lastupd>2020-07-01 15:42:44</mdl_lastupd>
 		<mdl_comment/>
 	</data>
 </object>
@@ -2343,8 +2343,7 @@
       <div class="area" data-area="DemReqOrd;demReqordOrdId"></div>
     </div>
   </div>
-</div>
-]]></tpl_ui>
+</div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2358,8 +2357,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2373,8 +2371,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1:="></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1:="></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2388,8 +2385,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2403,8 +2399,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2418,8 +2413,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1:="></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1:="></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2433,8 +2427,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2448,8 +2441,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2463,8 +2455,7 @@
 		</tr>
 	</tbody>
 </table>]]></tpl_form>
-		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>
-]]></tpl_ui>
+		<tpl_ui><![CDATA[<div class="area" data-area="1"></div>]]></tpl_ui>
 		<tpl_min/>
 		<tpl_image/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -2488,8 +2479,7 @@
     <div class="field" data-field="demOrdOrderDate"></div>
     <div class="field" data-field="demOrdStatus"></div>
   </div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/color/info</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2516,8 +2506,7 @@
   <div class="field" data-field="demReqReason"></div>
   <div class="field" data-field="demRenEquipmentCondition"></div>
   <div class="field" data-field="demReqFutherInformation"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/color/info</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2539,8 +2528,7 @@
     </div>
   </div>
   <div class="field" data-field="demReqordOrdId"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2562,8 +2550,7 @@
   </div>
   <div class="field" data-field="demReqsupSupId"></div>
   <div class="field" data-field="demReqsupSupId__demSupSprId"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2579,8 +2566,7 @@
   <div class="field" data-field="demReqsupReqId__demReqTitle"></div>
   <div class="field" data-field="demReqsupReqId__demReqSupplyType"></div>
   <div class="field" data-field="demReqsupReqId__demReqType"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2595,8 +2581,7 @@
   <div class="field" data-field="demReqsupSupId__demSupType"></div>
   <div class="field" data-field="demReqsupSupId__demSupStockQuantity"></div>
   <div class="field" data-field="demReqsupSupId__demSupSprId__demSprName"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2623,8 +2608,7 @@
   <div class="field" data-field="demReqRejectedReasonAdministrator"></div>
   <div class="field" data-field="demReqRejectedReasonManager"></div>
   <div class="area" data-area="DemFourniture;demFrnDemId"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/color/info</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2633,8 +2617,7 @@
 		<ofa_position>2</ofa_position>
 		<ofa_title>0</ofa_title>
 		<ofa_template/>
-		<ofa_ui><![CDATA[<div class="field" data-field="demReqFutherInformation"></div>
-]]></ofa_ui>
+		<ofa_ui><![CDATA[<div class="field" data-field="demReqFutherInformation"></div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2654,8 +2637,7 @@
     </div>
   </div>
   <div class="field" data-field="demSprreqReqId"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2677,8 +2659,7 @@
   <div class="field" data-field="demSupordSupId"></div>
   <div class="field" data-field="demSupordSupId__demSupSprId"></div>
   <div class="field" data-field="demSupordOrdId"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>star</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2693,8 +2674,7 @@
   <div class="field" data-field="demSupordSupId__demSupStockQuantity"></div>
   <div class="field" data-field="demSupordSupId__demSupPrice"></div>
   <div class="field" data-field="demSupordSupId__demSupSprId__demSprName"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/color/info</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2703,8 +2683,7 @@
 		<ofa_position>3</ofa_position>
 		<ofa_title>1</ofa_title>
 		<ofa_template/>
-		<ofa_ui><![CDATA[<div class="field" data-field="demSupordOrdId__demOrdReference"></div>
-]]></ofa_ui>
+		<ofa_ui><![CDATA[<div class="field" data-field="demSupordOrdId__demOrdReference"></div>]]></ofa_ui>
 		<ofa_icon>icon/color/info</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2723,8 +2702,7 @@
     <div class="field" data-field="demSprContactName"></div>
     <div class="field" data-field="demSprContactPhone"></div>
   </div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/color/info</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2756,8 +2734,7 @@
       <div class="field" data-field="demSupSprId__demSprName"></div>
     </div>
   </div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/news</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -2769,8 +2746,7 @@
 		<ofa_ui><![CDATA[<div class="row">
   <div class="col-sm-6"></div>
   <div class="col-sm-6"></div>
-</div>
-]]></ofa_ui>
+</div>]]></ofa_ui>
 		<ofa_icon>icon/clock</ofa_icon>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -5057,25 +5033,6 @@
 		<act_order/>
 	</data>
 	<data>
-		<act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</act_name>
-		<act_type>O</act_type>
-		<act_async>0</act_async>
-		<act_job_depth/>
-		<act_method>setRejectedReason</act_method>
-		<act_script/>
-		<act_url/>
-		<act_image/>
-		<act_confirm>1</act_confirm>
-		<act_confirm_expr/>
-		<act_confirm_ui/>
-		<act_plus>0</act_plus>
-		<act_comment/>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-		<act_exec>BCK</act_exec>
-		<act_count/>
-		<act_order/>
-	</data>
-	<data>
 		<act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</act_name>
 		<act_type>O</act_type>
 		<act_async>0</act_async>
@@ -5089,6 +5046,25 @@
 		<act_confirm_ui/>
 		<act_plus>0</act_plus>
 		<act_comment><![CDATA[Transition]]></act_comment>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+		<act_exec>BCK</act_exec>
+		<act_count/>
+		<act_order/>
+	</data>
+	<data>
+		<act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</act_name>
+		<act_type>O</act_type>
+		<act_async>0</act_async>
+		<act_job_depth/>
+		<act_method>setRejectedReason</act_method>
+		<act_script/>
+		<act_url/>
+		<act_image/>
+		<act_confirm>1</act_confirm>
+		<act_confirm_expr/>
+		<act_confirm_ui/>
+		<act_plus>0</act_plus>
+		<act_comment/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 		<act_exec>BCK</act_exec>
 		<act_count/>
@@ -5314,15 +5290,15 @@
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
-		<afd_action_id.act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</afd_action_id.act_name>
-		<afd_field_id.fld_name>demRejectedReasonManager</afd_field_id.fld_name>
-		<afd_order>10</afd_order>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
 		<afd_action_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</afd_action_id.act_name>
 		<afd_field_id.fld_name>demRejectedReasonManager</afd_field_id.fld_name>
 		<afd_order>1</afd_order>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<afd_action_id.act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</afd_action_id.act_name>
+		<afd_field_id.fld_name>demRejectedReasonManager</afd_field_id.fld_name>
+		<afd_order>10</afd_order>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5358,6 +5334,15 @@
 		<fct_object_id.obj_type>E</fct_object_id.obj_type>
 		<fct_object_id.obj_name>DemRentalAgenda</fct_object_id.obj_name>
 		<fct_function>L</fct_function>
+		<fct_action_id.act_name/>
+		<fct_view_id.viw_name/>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<fct_name>DemRental-CUD</fct_name>
+		<fct_object_id.obj_type>O</fct_object_id.obj_type>
+		<fct_object_id.obj_name>DemRental</fct_object_id.obj_name>
+		<fct_function>CMS</fct_function>
 		<fct_action_id.act_name/>
 		<fct_view_id.viw_name/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
@@ -5417,33 +5402,6 @@
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
-		<fct_name>DEM_REQUESTSTATUSPENDINGREJECTEDMAN_A</fct_name>
-		<fct_object_id.obj_type>O</fct_object_id.obj_type>
-		<fct_object_id.obj_name>DemRequest</fct_object_id.obj_name>
-		<fct_function>A</fct_function>
-		<fct_action_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</fct_action_id.act_name>
-		<fct_view_id.viw_name/>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
-		<fct_name>DEM_REQUESTSTATUSVALIDATEDREJECTED_A</fct_name>
-		<fct_object_id.obj_type>O</fct_object_id.obj_type>
-		<fct_object_id.obj_name>DemRequest</fct_object_id.obj_name>
-		<fct_function>A</fct_function>
-		<fct_action_id.act_name>REQUESTSTATUS-VALIDATED-REJECTEDADM</fct_action_id.act_name>
-		<fct_view_id.viw_name/>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
-		<fct_name>DemRental-CUD</fct_name>
-		<fct_object_id.obj_type>O</fct_object_id.obj_type>
-		<fct_object_id.obj_name>DemRental</fct_object_id.obj_name>
-		<fct_function>CMS</fct_function>
-		<fct_action_id.act_name/>
-		<fct_view_id.viw_name/>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
 		<fct_name>DemRequest-CUD</fct_name>
 		<fct_object_id.obj_type>O</fct_object_id.obj_type>
 		<fct_object_id.obj_name>DemRequest</fct_object_id.obj_name>
@@ -5458,6 +5416,24 @@
 		<fct_object_id.obj_name>DemRequestHistoric</fct_object_id.obj_name>
 		<fct_function>L</fct_function>
 		<fct_action_id.act_name/>
+		<fct_view_id.viw_name/>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<fct_name>DEM_REQUESTSTATUSPENDINGREJECTEDMAN_A</fct_name>
+		<fct_object_id.obj_type>O</fct_object_id.obj_type>
+		<fct_object_id.obj_name>DemRequest</fct_object_id.obj_name>
+		<fct_function>A</fct_function>
+		<fct_action_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</fct_action_id.act_name>
+		<fct_view_id.viw_name/>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<fct_name>DEM_REQUESTSTATUSVALIDATEDREJECTED_A</fct_name>
+		<fct_object_id.obj_type>O</fct_object_id.obj_type>
+		<fct_object_id.obj_name>DemRequest</fct_object_id.obj_name>
+		<fct_function>A</fct_function>
+		<fct_action_id.act_name>REQUESTSTATUS-VALIDATED-REJECTEDADM</fct_action_id.act_name>
 		<fct_view_id.viw_name/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -5510,8 +5486,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[obj.getFieldValue("demReqStatus").equals("PENDING")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5523,8 +5499,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[obj.getFieldValue("demReqStatus").equals("PENDING")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5536,8 +5512,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[getParentObject().getFieldValue("demReqStatus").equals("PROCESSING")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5549,8 +5525,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[obj.getParentObject().getFieldValue("demReqStatus").equals("PROCESSING")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5562,8 +5538,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[obj.getFieldValue("demReqStatus").equals("PENDING")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5575,8 +5551,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[obj.getFieldValue("demReqStatus").equals("VALIDATED")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -5588,8 +5564,8 @@
 		<fcv_org_id.grp_name/>
 		<fcv_sql/>
 		<fcv_bsh><![CDATA[obj.getFieldValue("demReqStatus").equals("PENDING")]]></fcv_bsh>
-		<fcv_method/>
 		<fcv_desc/>
+		<fcv_method/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 </object>
@@ -5648,21 +5624,21 @@
 	</data>
 	<data>
 		<grt_group_id.grp_name>DEM_ADMINISTRATOR</grt_group_id.grp_name>
-		<grt_function_id.fct_name>DEM_REQUESTSTATUSVALIDATEDREJECTED_A</grt_function_id.fct_name>
-		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
-		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
-		<grt_function_id.fct_action_id.act_name>REQUESTSTATUS-VALIDATED-REJECTEDADM</grt_function_id.fct_action_id.act_name>
-		<grt_function_id.fct_function>A</grt_function_id.fct_function>
-		<grt_activ>1</grt_activ>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
-		<grt_group_id.grp_name>DEM_ADMINISTRATOR</grt_group_id.grp_name>
 		<grt_function_id.fct_name>DemRequest-CUD</grt_function_id.fct_name>
 		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
 		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
 		<grt_function_id.fct_action_id.act_name/>
 		<grt_function_id.fct_function>CMS</grt_function_id.fct_function>
+		<grt_activ>1</grt_activ>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<grt_group_id.grp_name>DEM_ADMINISTRATOR</grt_group_id.grp_name>
+		<grt_function_id.fct_name>DEM_REQUESTSTATUSVALIDATEDREJECTED_A</grt_function_id.fct_name>
+		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
+		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
+		<grt_function_id.fct_action_id.act_name>REQUESTSTATUS-VALIDATED-REJECTEDADM</grt_function_id.fct_action_id.act_name>
+		<grt_function_id.fct_function>A</grt_function_id.fct_function>
 		<grt_activ>1</grt_activ>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -5868,6 +5844,16 @@
 	</data>
 	<data>
 		<grt_group_id.grp_name>DEM_GROUP</grt_group_id.grp_name>
+		<grt_function_id.fct_name>DemRequest-CUD</grt_function_id.fct_name>
+		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
+		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
+		<grt_function_id.fct_action_id.act_name/>
+		<grt_function_id.fct_function>CMS</grt_function_id.fct_function>
+		<grt_activ>1</grt_activ>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<grt_group_id.grp_name>DEM_GROUP</grt_group_id.grp_name>
 		<grt_function_id.fct_name>DEM_REQUESTSTATUSPENDINGREJECTEDMAN_A</grt_function_id.fct_name>
 		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
 		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
@@ -5883,16 +5869,6 @@
 		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
 		<grt_function_id.fct_action_id.act_name>REQUESTSTATUS-VALIDATED-REJECTEDADM</grt_function_id.fct_action_id.act_name>
 		<grt_function_id.fct_function>A</grt_function_id.fct_function>
-		<grt_activ>1</grt_activ>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
-		<grt_group_id.grp_name>DEM_GROUP</grt_group_id.grp_name>
-		<grt_function_id.fct_name>DemRequest-CUD</grt_function_id.fct_name>
-		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
-		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
-		<grt_function_id.fct_action_id.act_name/>
-		<grt_function_id.fct_function>CMS</grt_function_id.fct_function>
 		<grt_activ>1</grt_activ>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -6038,21 +6014,21 @@
 	</data>
 	<data>
 		<grt_group_id.grp_name>DEM_MANAGERS</grt_group_id.grp_name>
-		<grt_function_id.fct_name>DEM_REQUESTSTATUSPENDINGREJECTEDMAN_A</grt_function_id.fct_name>
-		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
-		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
-		<grt_function_id.fct_action_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</grt_function_id.fct_action_id.act_name>
-		<grt_function_id.fct_function>A</grt_function_id.fct_function>
-		<grt_activ>1</grt_activ>
-		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
-	</data>
-	<data>
-		<grt_group_id.grp_name>DEM_MANAGERS</grt_group_id.grp_name>
 		<grt_function_id.fct_name>DemRequest-CUD</grt_function_id.fct_name>
 		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
 		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
 		<grt_function_id.fct_action_id.act_name/>
 		<grt_function_id.fct_function>CMS</grt_function_id.fct_function>
+		<grt_activ>1</grt_activ>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<grt_group_id.grp_name>DEM_MANAGERS</grt_group_id.grp_name>
+		<grt_function_id.fct_name>DEM_REQUESTSTATUSPENDINGREJECTEDMAN_A</grt_function_id.fct_name>
+		<grt_function_id.fct_object_id.obj_type>O</grt_function_id.fct_object_id.obj_type>
+		<grt_function_id.fct_object_id.obj_name>DemRequest</grt_function_id.fct_object_id.obj_name>
+		<grt_function_id.fct_action_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</grt_function_id.fct_action_id.act_name>
+		<grt_function_id.fct_function>A</grt_function_id.fct_function>
 		<grt_activ>1</grt_activ>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
@@ -7306,6 +7282,24 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 	<data>
 		<res_object>
 			<object>
+				<name>Disposition</name>
+				<data>
+					<dis_code>default</dis_code>
+				</data>
+			</object>
+		</res_object>
+		<res_type>IMG</res_type>
+		<res_lang>ANY</res_lang>
+		<res_code>demo-demandes</res_code>
+		<res_cached>0</res_cached>
+		<res_file/>
+		<res_file_compiled/>
+		<res_image>resources/Disposition/default/demo-demandes.svg</res_image>
+		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
+	</data>
+	<data>
+		<res_object>
+			<object>
 				<name>ObjectExternal</name>
 				<data>
 					<obe_name>DemRentalAgenda</obe_name>
@@ -7419,7 +7413,7 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 	</data>
 	<data>
 		<tsl_typeAction>A</tsl_typeAction>
-		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</tsl_id.act_name>
+		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</tsl_id.act_name>
 		<tsl_lang>ENU</tsl_lang>
 		<tsl_value>Reject the request</tsl_value>
 		<tsl_simplehelp/>
@@ -7427,7 +7421,7 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 	</data>
 	<data>
 		<tsl_typeAction>A</tsl_typeAction>
-		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</tsl_id.act_name>
+		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</tsl_id.act_name>
 		<tsl_lang>ENU</tsl_lang>
 		<tsl_value>Reject the request</tsl_value>
 		<tsl_simplehelp/>
@@ -7563,7 +7557,7 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 	</data>
 	<data>
 		<tsl_typeAction>A</tsl_typeAction>
-		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</tsl_id.act_name>
+		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</tsl_id.act_name>
 		<tsl_lang>FRA</tsl_lang>
 		<tsl_value>Refuser la demande</tsl_value>
 		<tsl_simplehelp/>
@@ -7571,7 +7565,7 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 	</data>
 	<data>
 		<tsl_typeAction>A</tsl_typeAction>
-		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTEDMAN</tsl_id.act_name>
+		<tsl_id.act_name>REQUESTSTATUS-PENDING-REJECTED-RENTAL</tsl_id.act_name>
 		<tsl_lang>FRA</tsl_lang>
 		<tsl_value>Refuser la demande</tsl_value>
 		<tsl_simplehelp/>
@@ -8129,7 +8123,7 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 		<tsl_typeField>F</tsl_typeField>
 		<tsl_id.fld_name>demOrderQuantity</tsl_id.fld_name>
 		<tsl_lang>FRA</tsl_lang>
-		<tsl_value>Quantité à commander : </tsl_value>
+		<tsl_value>Quantité à commander :</tsl_value>
 		<tsl_simplehelp/>
 		<tsl_short_value/>
 		<tsl_placeholder/>
@@ -8978,8 +8972,8 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 		<tsl_id.rch_name>DemSupplySearch</tsl_id.rch_name>
 		<tsl_id.rch_user_id.usr_login>designer</tsl_id.rch_user_id.usr_login>
 		<tsl_id.rch_object_id.obo_name>DemSupply</tsl_id.rch_object_id.obo_name>
-		<tsl_value>DemSupplySearch</tsl_value>
 		<tsl_lang>ENU</tsl_lang>
+		<tsl_value>DemSupplySearch</tsl_value>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 	<data>
@@ -8987,8 +8981,8 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 		<tsl_id.rch_name>DemSupplySearch</tsl_id.rch_name>
 		<tsl_id.rch_user_id.usr_login>designer</tsl_id.rch_user_id.usr_login>
 		<tsl_id.rch_object_id.obo_name>DemSupply</tsl_id.rch_object_id.obo_name>
-		<tsl_value>DemFournitureRecherche</tsl_value>
 		<tsl_lang>FRA</tsl_lang>
+		<tsl_value>DemFournitureRecherche</tsl_value>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
 </object>
@@ -9031,7 +9025,7 @@ where dem_sup_ord.dem_supord_ord_id = [row_id]]]></atr_query>
 		<tsl_typeView>V</tsl_typeView>
 		<tsl_id.viw_name>DemAdmScope</tsl_id.viw_name>
 		<tsl_lang>FRA</tsl_lang>
-		<tsl_value>Demandes </tsl_value>
+		<tsl_value>Demandes</tsl_value>
 		<tsl_help/>
 		<row_module_id.mdl_name>Demandes</row_module_id.mdl_name>
 	</data>
