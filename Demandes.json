@@ -7357,10 +7357,10 @@
     },
     {
      "object": "Grant",
-     "userkey": "DEM_ADMINISTRATOR DEM_USER_CUD DemUser",
+     "userkey": "DEM_ADMINISTRATOR DEM_USER_CRUD DemUser",
      "item": {
       "grt_group_id__grp_name": "DEM_ADMINISTRATOR",
-      "grt_function_id__fct_name": "DEM_USER_CUD",
+      "grt_function_id__fct_name": "DEM_USER_CRUD",
       "grt_function_id__fct_object_id__obo_name": "DemUser",
       "grt_function_id__fct_action_id__act_name": null,
       "grt_activ": true,
@@ -13172,20 +13172,6 @@
        "userkeylabel": "DemRentalAgenda",
        "object": "ObjectExternal"
       },
-      "prm_perm": true,
-      "prm_upd": false,
-      "prm_req": false,
-      "prm_prop": null,
-      "prm_value": null,
-      "row_module_id__mdl_name": "Demandes"
-     }
-    },
-    {
-     "object": "Permission",
-     "userkey": "DEM_USER ViewSimple:4",
-     "item": {
-      "prm_group_id__grp_name": "DEM_USER",
-      "prm_object": {"object": "ViewSimple"},
       "prm_perm": true,
       "prm_upd": false,
       "prm_req": false,
