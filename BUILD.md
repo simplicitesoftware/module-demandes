@@ -1,22 +1,51 @@
-![](https://docs.simplicite.io//logos/logo250.png)
+![](https://platform.simplicite.io/logos/standard/logo250.png)
 * * *
 
 Apache Maven
 ============
 
-Build:
+Build
+-----
 
 ``` text
-mvn -U clean package
+mvn -U -DskipTests=true clean package
 ```
 
-
-
-Analyse:
+Sonar analysis
+--------------
 
 ``` text
 mvn sonar:sonar
 ```
 
+Checkstyle (optional)
+---------------------
 
+``` text
+mvn checkstyle:check
+```
+
+JSHint (optional, requires node.js)
+-----------------------------------
+
+``` text
+npm install
+npm run jshint
+```
+
+ESLint (optional, requires node.js)
+-----------------------------------
+
+``` text
+npm install
+npm run eslint
+```
+
+StyleLint (optional, requires node.js)
+--------------------------------------
+
+``` text
+npm install
+npm run stylelint
+```
 

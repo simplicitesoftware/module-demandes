@@ -3,6 +3,7 @@
 # \__ \ | '  \| '_ \ | / _| |  _/ -_)
 # |___/_|_|_|_| .__/_|_\__|_|\__\___|
 #             |_| Module: Demandes 0.1
+basePath: /api
 paths:
   /login:
     get:
@@ -32,6 +33,168 @@ paths:
         - token
       tags:
       - session
+  /rest/DemPurchase/{row_id}:
+    post:
+      summary: Create a new DemPurchase business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-dempurchase-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemPurchase'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemPurchase'
+        in: body
+        name: body
+      tags:
+      - DemPurchase
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemPurchase business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-dempurchase-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemPurchase'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemPurchase
+    delete:
+      summary: Delete a DemPurchase business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-dempurchase-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemPurchase
+    put:
+      summary: Update a DemPurchase business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-dempurchase-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemPurchase'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemPurchase'
+        in: body
+        name: body
+      tags:
+      - DemPurchase
+      consumes:
+      - application/json
   /logout:
     get:
       summary: Logout (revoke bearer token)
@@ -93,13 +256,13 @@ paths:
         type: string
         required: false
       - in: query
-        name: demReqReference
-        description: Search filter for Reference
+        name: demRenEndDate
+        description: Search filter for To
         type: string
         required: false
       - in: query
-        name: demRenEndDate
-        description: Search filter for To
+        name: demReqReference
+        description: Search filter for Reference
         type: string
         required: false
       - in: query
@@ -108,18 +271,18 @@ paths:
         type: string
         required: false
       - in: query
-        name: demRenEquipmentCondition
-        description: Search filter for Equipment's condition
-        type: string
-        required: false
-      - in: query
         name: demReqType
         description: Search filter for Type
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
+      - in: query
+        name: demRenEquipmentCondition
+        description: Search filter for Equipment's condition
+        type: string
+        required: false
       - in: query
         name: demReqStatus
         description: Search filter for Status
@@ -129,20 +292,22 @@ paths:
         - DRAFT
         - PENDING
         - VALIDATED
-        - REJECTEDMAN
+        - REJECTED
         - REQUESTFUTHERINFO
         - PROCESSING
-        - REJECTEDADM
         - CLOSED
         - CANCELLED
       - in: query
-        name: demReqReason
-        description: Search filter for Reason of the request
+        name: demReqRejectedReason
+        description: Search filter for Rejected reason
         type: string
         required: false
+        enum:
+        - UNAVAILABLE
+        - NOBUDGET
       - in: query
         name: demReqFutherInformation
-        description: Search filter for Futher information
+        description: Search filter for Further information
         type: string
         required: false
       - in: query
@@ -156,28 +321,37 @@ paths:
         type: string
         required: false
         enum:
-        - FURNITURE
         - IT
+        - FURNITURE
         - OFFICE
       - in: query
-        name: demReqRejectedReasonAdministrator
-        description: Search filter for Rejected reason
+        name: demReqDesc
+        description: Search filter for Description
         type: string
         required: false
-        enum:
-        - UNAVAILABLE
-        - NOBUDGET
       - in: query
-        name: demReqRejectedReasonManager
-        description: Search filter for Rejected reason
+        name: demReqDemUserId
+        description: Search filter for User
         type: string
         required: false
-        enum:
-        - NOTNECESSARY
-        - NOBUDGET
       - in: query
-        name: demReqSprId
-        description: Search filter for Suppliers
+        name: demReqDemUserId__usr_login
+        description: Search filter for Login
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_first_name
+        description: Search filter for First name
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_last_name
+        description: Search filter for Last name
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_email
+        description: Search filter for Email address
         type: string
         required: false
       tags:
@@ -232,7 +406,7 @@ paths:
         required: false
       - in: query
         name: demSprContactName
-        description: Search filter for Contact name
+        description: Search filter for Contact first name
         type: string
         required: false
       - in: query
@@ -249,7 +423,7 @@ paths:
       - DemSupplier
   /rest/DemSupplier/{row_id}:
     post:
-      summary: Create a new DemSupplierbusiness object record
+      summary: Create a new DemSupplier business object record
       security:
       - bearerAuth: []
       produces:
@@ -368,7 +542,7 @@ paths:
       tags:
       - DemSupplier
     put:
-      summary: Update a DemSupplierbusiness object record
+      summary: Update a DemSupplier business object record
       security:
       - bearerAuth: []
       produces:
@@ -409,6 +583,123 @@ paths:
       - DemSupplier
       consumes:
       - application/json
+  /rest/DemUser:
+    get:
+      summary: Search DemUser business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demuser-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemUser'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: usr_image_id
+        description: Search filter for Picture
+        type: string
+        required: false
+      - in: query
+        name: usr_login
+        description: Search filter for Login
+        type: string
+        required: false
+      - in: query
+        name: usr_first_name
+        description: Search filter for First name
+        type: string
+        required: false
+      - in: query
+        name: usr_last_name
+        description: Search filter for Last name
+        type: string
+        required: false
+      - in: query
+        name: usr_lang
+        description: Search filter for Language
+        type: string
+        required: false
+        enum:
+        - ENU
+        - FRA
+      - in: query
+        name: usr_email
+        description: Search filter for Email address
+        type: string
+        required: false
+      - in: query
+        name: usr_cell_num
+        description: Search filter for Mobile/cellular phone number
+        type: string
+        required: false
+      - in: query
+        name: usr_active
+        description: Search filter for Active
+        type: string
+        required: false
+        enum:
+        - '0'
+        - '1'
+        - '2'
+        - '3'
+      - in: query
+        name: demDemuserRole
+        description: Search filter for Role
+        type: string
+        required: false
+        enum:
+        - A
+        - M
+        - U
+      - in: query
+        name: usr_home_id
+        description: Search filter for Home page
+        type: string
+        required: false
+      - in: query
+        name: usr_home_id__viw_name
+        description: Search filter for Home page Name
+        type: string
+        required: false
+      - in: query
+        name: row_module_id
+        description: Search filter for Module
+        type: string
+        required: false
+      - in: query
+        name: row_module_id__mdl_name
+        description: Search filter for Module name
+        type: string
+        required: false
+      tags:
+      - DemUser
   /:
     get:
       summary: Get user session information
@@ -497,20 +788,22 @@ paths:
         - DRAFT
         - PENDING
         - VALIDATED
-        - REJECTEDMAN
+        - REJECTED
         - REQUESTFUTHERINFO
         - PROCESSING
-        - REJECTEDADM
         - CLOSED
         - CANCELLED
       - in: query
-        name: demReqReason
-        description: Search filter for Reason of the request
+        name: demReqRejectedReason
+        description: Search filter for Rejected reason
         type: string
         required: false
+        enum:
+        - UNAVAILABLE
+        - NOBUDGET
       - in: query
         name: demReqFutherInformation
-        description: Search filter for Futher information
+        description: Search filter for Further information
         type: string
         required: false
       - in: query
@@ -524,27 +817,170 @@ paths:
         type: string
         required: false
         enum:
-        - FURNITURE
         - IT
+        - FURNITURE
         - OFFICE
       - in: query
-        name: demReqRejectedReasonAdministrator
-        description: Search filter for Rejected reason
+        name: demReqDesc
+        description: Search filter for Description
         type: string
         required: false
-        enum:
-        - NOBUDGET
-        - UNAVAILABLE
       - in: query
-        name: demReqRejectedReasonManager
-        description: Search filter for Rejected reason
+        name: demReqDemUserId
+        description: Search filter for User
         type: string
         required: false
-        enum:
-        - NOBUDGET
-        - NOTNECESSARY
+      - in: query
+        name: demReqDemUserId__usr_login
+        description: Search filter for Login
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_first_name
+        description: Search filter for First name
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_last_name
+        description: Search filter for Last name
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_email
+        description: Search filter for Email address
+        type: string
+        required: false
       tags:
       - DemRequest
+  /rest/DemPurchase:
+    get:
+      summary: Search DemPurchase business object records or get contextualized metadata
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-dempurchase-search
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ArrayOfDemPurchase'
+          description: Success in searching business object records (or in getting
+            contextualized business object metadata, documentation, ...)
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: query
+        name: _metadata
+        description: Metadata?
+        type: boolean
+        required: false
+      - in: query
+        name: _count
+        description: Count?
+        type: boolean
+        required: false
+      - in: query
+        name: _doc
+        description: Documentation?
+        type: boolean
+        required: false
+      - in: query
+        name: demReqType
+        description: Search filter for Type
+        type: string
+        required: false
+        enum:
+        - PURCHASE
+        - RENTAL
+      - in: query
+        name: demReqReference
+        description: Search filter for Reference
+        type: string
+        required: false
+      - in: query
+        name: demReqTitle
+        description: Search filter for Title
+        type: string
+        required: false
+      - in: query
+        name: demReqStatus
+        description: Search filter for Status
+        type: string
+        required: false
+        enum:
+        - DRAFT
+        - PENDING
+        - VALIDATED
+        - REJECTED
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - CLOSED
+        - CANCELLED
+      - in: query
+        name: demReqRejectedReason
+        description: Search filter for Rejected reason
+        type: string
+        required: false
+        enum:
+        - UNAVAILABLE
+        - NOBUDGET
+      - in: query
+        name: demReqFutherInformation
+        description: Search filter for Further information
+        type: string
+        required: false
+      - in: query
+        name: demReqRequestDate
+        description: Search filter for Request date
+        type: string
+        required: false
+      - in: query
+        name: demReqSupplyType
+        description: Search filter for Supply type
+        type: string
+        required: false
+        enum:
+        - IT
+        - FURNITURE
+        - OFFICE
+      - in: query
+        name: demReqDesc
+        description: Search filter for Description
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId
+        description: Search filter for User
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_login
+        description: Search filter for Login
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_first_name
+        description: Search filter for First name
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_last_name
+        description: Search filter for Last name
+        type: string
+        required: false
+      - in: query
+        name: demReqDemUserId__usr_email
+        description: Search filter for Email address
+        type: string
+        required: false
+      tags:
+      - DemPurchase
   /rest/DemReqSup:
     get:
       summary: Search DemReqSup business object records or get contextualized metadata
@@ -604,16 +1040,16 @@ paths:
         type: string
         required: false
         enum:
-        - RENTAL
         - PURCHASE
+        - RENTAL
       - in: query
         name: demReqsupReqId__demReqSupplyType
-        description: Search filter for Request Supply type
+        description: Search filter for Supply type
         type: string
         required: false
         enum:
-        - FURNITURE
         - IT
+        - FURNITURE
         - OFFICE
       - in: query
         name: demReqsupSupId
@@ -627,7 +1063,7 @@ paths:
         required: false
       - in: query
         name: demReqsupSupId__demSupStockQuantity
-        description: Search filter for Supply Stock quantity
+        description: Search filter for Stock quantity
         type: integer
         required: false
       - in: query
@@ -637,7 +1073,7 @@ paths:
         required: false
       - in: query
         name: demReqsupSupId__demSupSprId__demSprName
-        description: Search filter for Supply Suppliers Name
+        description: Search filter for Supplier Name
         type: string
         required: false
       - in: query
@@ -684,7 +1120,7 @@ paths:
       - DemReqSup
   /rest/DemRental/{row_id}:
     post:
-      summary: Create a new DemRentalbusiness object record
+      summary: Create a new DemRental business object record
       security:
       - bearerAuth: []
       produces:
@@ -803,7 +1239,7 @@ paths:
       tags:
       - DemRental
     put:
-      summary: Update a DemRentalbusiness object record
+      summary: Update a DemRental business object record
       security:
       - bearerAuth: []
       produces:
@@ -943,7 +1379,7 @@ paths:
       - DemSupply
   /rest/DemRequest/{row_id}:
     post:
-      summary: Create a new DemRequestbusiness object record
+      summary: Create a new DemRequest business object record
       security:
       - bearerAuth: []
       produces:
@@ -1062,7 +1498,7 @@ paths:
       tags:
       - DemRequest
     put:
-      summary: Update a DemRequestbusiness object record
+      summary: Update a DemRequest business object record
       security:
       - bearerAuth: []
       produces:
@@ -1144,22 +1580,22 @@ paths:
         required: false
       - in: query
         name: row_ref_id
-        description: Search filter for Reference
+        description: Search filter for Record row ID
         type: string
         required: false
       - in: query
         name: row_idx
-        description: Search filter for Version
+        description: Search filter for History record index
         type: integer
         required: false
       - in: query
         name: created_by_hist
-        description: Search filter for User
+        description: Search filter for Created by
         type: string
         required: false
       - in: query
         name: created_dt_hist
-        description: Search filter for Date
+        description: Search filter for Created date
         type: string
         required: false
       - in: query
@@ -1187,17 +1623,178 @@ paths:
         - DRAFT
         - PENDING
         - VALIDATED
-        - REJECTEDMAN
+        - REJECTED
         - REQUESTFUTHERINFO
         - PROCESSING
-        - REJECTEDADM
         - CLOSED
         - CANCELLED
       tags:
       - DemRequestHistoric
+  /rest/DemUser/{row_id}:
+    post:
+      summary: Create a new DemUser business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demuser-create
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemUser'
+          description: Success in creating a new business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemUser'
+        in: body
+        name: body
+      tags:
+      - DemUser
+      consumes:
+      - application/json
+    get:
+      summary: Get a DemUser business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demuser-get
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemUser'
+          description: Success in getting a single business object record
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - in: query
+        name: _inline_documents
+        description: Inline documents?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_thumbnails
+        description: Inline documents' thumbnails?
+        type: boolean
+        required: false
+      - in: query
+        name: _inline_objects
+        description: Inline objects?
+        type: boolean
+        required: false
+      tags:
+      - DemUser
+    delete:
+      summary: Delete a DemUser business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demuser-delete
+      responses:
+        '200':
+          description: Success in deleting a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      tags:
+      - DemUser
+    put:
+      summary: Update a DemUser business object record
+      security:
+      - bearerAuth: []
+      produces:
+      - application/json
+      operationId: obj-demuser-update
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/DemUser'
+          description: Success in updating a business object record
+        '400':
+          schema:
+            $ref: '#/definitions/Error400'
+          description: Bad request
+        '401':
+          schema:
+            $ref: '#/definitions/Error401'
+          description: Unauthorized
+        '500':
+          schema:
+            $ref: '#/definitions/Error500'
+          description: Internal server error
+        '404':
+          schema:
+            $ref: '#/definitions/Error404'
+          description: Not found
+      parameters:
+      - in: path
+        name: row_id
+        description: Row ID (or empty or _ for all row IDs)
+        type: string
+        required: true
+      - schema:
+          $ref: '#/definitions/DemUser'
+        in: body
+        name: body
+      tags:
+      - DemUser
+      consumes:
+      - application/json
   /rest/DemSupply/{row_id}:
     post:
-      summary: Create a new DemSupplybusiness object record
+      summary: Create a new DemSupply business object record
       security:
       - bearerAuth: []
       produces:
@@ -1316,7 +1913,7 @@ paths:
       tags:
       - DemSupply
     put:
-      summary: Update a DemSupplybusiness object record
+      summary: Update a DemSupply business object record
       security:
       - bearerAuth: []
       produces:
@@ -1359,7 +1956,7 @@ paths:
       - application/json
   /rest/DemRequestHistoric/{row_id}:
     post:
-      summary: Create a new DemRequestHistoricbusiness object record
+      summary: Create a new DemRequestHistoric business object record
       security:
       - bearerAuth: []
       produces:
@@ -1478,7 +2075,7 @@ paths:
       tags:
       - DemRequestHistoric
     put:
-      summary: Update a DemRequestHistoricbusiness object record
+      summary: Update a DemRequestHistoric business object record
       security:
       - bearerAuth: []
       produces:
@@ -1521,7 +2118,7 @@ paths:
       - application/json
   /rest/DemReqSup/{row_id}:
     post:
-      summary: Create a new DemReqSupbusiness object record
+      summary: Create a new DemReqSup business object record
       security:
       - bearerAuth: []
       produces:
@@ -1640,7 +2237,7 @@ paths:
       tags:
       - DemReqSup
     put:
-      summary: Update a DemReqSupbusiness object record
+      summary: Update a DemReqSup business object record
       security:
       - bearerAuth: []
       produces:
@@ -1700,87 +2297,14 @@ definitions:
         type: integer
         enum:
         - 404
-  DemReqSup:
-    type: object
-    properties:
-      demReqsupSupId:
-        description: Supply
-        type: string
-      demReqsupSupId__demSupSprId__demSprName:
-        description: Supply Suppliers Name
-        type: string
-      demReqsupSupId__demSupStockQuantity:
-        description: Supply Stock quantity
-        type: integer
-      demReqsupReqId:
-        description: Request
-        type: string
-      demReqsupSupId__demSupType:
-        description: Supply Type
-        type: string
-        enum:
-        - FURNITURE
-        - IT
-        - OFFICE
-      demReqsupQuantityOrdered:
-        description: Quantity ordered
-        type: integer
-      demReqsupOrderChoice:
-        description: Order or decrease stock
-        type: array
-        items:
-          type: string
-          enum:
-          - ORDER
-          - DECREASESTOCK
-      demReqsupSupId__demSupName:
-        description: Supply Name
-        type: string
-      demReqsupReqId__demReqTitle:
-        description: Request Title
-        type: string
-      demReqsupReqId__demReqType:
-        description: Request Type
-        type: string
-        enum:
-        - RENTAL
-        - PURCHASE
-      demReqsupSupId__demSupAllocation:
-        description: Supply Allocation
-        type: string
-        enum:
-        - RENTAL
-        - PURCHASE
-      demReqsupSupId__demSupSprId:
-        description: Supply Suppliers
-        type: string
-      demReqsupSupId__demSupReference:
-        description: Supply Reference
-        type: string
-      row_id:
-        description: Unique technical row ID
-        type: string
-      demReqsupReqId__demReqReference:
-        description: Request Reference
-        type: string
-      demReqsupReqId__demReqSupplyType:
-        description: Request Supply type
-        type: string
-        enum:
-        - FURNITURE
-        - IT
-        - OFFICE
-      demReqsupQuantityRequired:
-        description: Quantity required
-        type: integer
   DemRequestHistoric:
     type: object
     properties:
       row_idx:
-        description: Version
+        description: History record index
         type: integer
       created_dt_hist:
-        description: Date
+        description: Created date
         type: string
         example: yyyy-MM-dd HH:mm:ss
       demReqRejectedReasonAdministrator:
@@ -1809,65 +2333,25 @@ definitions:
         - DRAFT
         - PENDING
         - VALIDATED
-        - REJECTEDMAN
+        - REJECTED
         - REQUESTFUTHERINFO
         - PROCESSING
-        - REJECTEDADM
         - CLOSED
         - CANCELLED
       created_by_hist:
-        description: User
+        description: Created by
         type: string
       row_ref_id:
-        description: Reference
+        description: Record row ID
         type: string
   ArrayOfDemSupply:
     type: array
     items:
       $ref: '#/definitions/DemSupply'
-  DemSupply:
-    type: object
-    properties:
-      demSupType:
-        description: Type
-        type: string
-        enum:
-        - FURNITURE
-        - IT
-        - OFFICE
-      demSupReference:
-        description: Reference
-        type: string
-      demSupName:
-        description: Name
-        type: string
-      demSupDeliveryTimeDays:
-        description: Delivery time in days
-        type: integer
-      demSupAllocation:
-        description: Allocation
-        type: string
-        enum:
-        - RENTAL
-        - PURCHASE
-      row_id:
-        description: Unique technical row ID
-        type: string
-      demSupSprId:
-        description: Suppliers
-        type: string
-      demSupStockQuantity:
-        description: Stock quantity
-        type: integer
-      demSupDescription:
-        description: Description
-        type: string
-      demSupPrice:
-        description: Price
-        type: number
-      demSupSprId__demSprName:
-        description: Suppliers Name
-        type: string
+  ArrayOfDemUser:
+    type: array
+    items:
+      $ref: '#/definitions/DemUser'
   PublicationResult:
     type: object
     properties:
@@ -1877,79 +2361,11 @@ definitions:
       content:
         description: Content (plain text or base64 encoded)
         type: string
-  DemRequest:
-    type: object
-    properties:
-      demReqReference:
-        description: Reference
-        type: string
-      demReqRequestDate:
-        description: Request date
-        type: string
-        example: yyyy-MM-dd
-      demReqType:
-        description: Type
-        type: string
-        enum:
-        - PURCHASE
-        - RENTAL
-      demReqReason:
-        description: Reason of the request
-        type: string
-      demReqSupplyType:
-        description: Supply type
-        type: string
-        enum:
-        - FURNITURE
-        - IT
-        - OFFICE
-      demReqTitle:
-        description: Title
-        type: string
-      demReqRejectedReasonAdministrator:
-        description: Rejected reason
-        type: array
-        items:
-          type: string
-          enum:
-          - NOBUDGET
-          - UNAVAILABLE
-      row_id:
-        description: Unique technical row ID
-        type: string
-      demReqStatus:
-        description: Status
-        type: string
-        enum:
-        - DRAFT
-        - PENDING
-        - VALIDATED
-        - REJECTEDMAN
-        - REQUESTFUTHERINFO
-        - PROCESSING
-        - REJECTEDADM
-        - CLOSED
-        - CANCELLED
-      demReqFutherInformation:
-        description: Futher information
-        type: string
-      demReqRejectedReasonManager:
-        description: Rejected reason
-        type: array
-        items:
-          type: string
-          enum:
-          - NOBUDGET
-          - NOTNECESSARY
-  ArrayOfDemRequestHistoric:
-    type: array
-    items:
-      $ref: '#/definitions/DemRequestHistoric'
   DemSupplier:
     type: object
     properties:
       demSprContactName:
-        description: Contact name
+        description: Contact first name
         type: string
       demSprContactEmail:
         description: Contact e-mail
@@ -1972,6 +2388,9 @@ definitions:
       demReqReference:
         description: Reference
         type: string
+      demReqDesc:
+        description: Description
+        type: string
       demReqRequestDate:
         description: Request date
         type: string
@@ -1980,10 +2399,10 @@ definitions:
         description: Type
         type: string
         enum:
-        - RENTAL
         - PURCHASE
-      demReqReason:
-        description: Reason of the request
+        - RENTAL
+      demReqDemUserId:
+        description: User
         type: string
       demRenEndDate:
         description: To
@@ -1992,12 +2411,26 @@ definitions:
       demReqTitle:
         description: Title
         type: string
+      demReqDemUserId__usr_last_name:
+        description: Last name
+        type: string
       demRenEquipmentCondition:
         description: Equipment's condition
         type: string
       demReqFutherInformation:
-        description: Futher information
+        description: Further information
         type: string
+      demReqDemUserId__usr_login:
+        description: Login
+        type: string
+      demReqRejectedReason:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - UNAVAILABLE
+          - NOBUDGET
       demRenStartDate:
         description: From
         type: string
@@ -2006,22 +2439,14 @@ definitions:
         description: Supply type
         type: string
         enum:
-        - FURNITURE
         - IT
+        - FURNITURE
         - OFFICE
-      demReqRejectedReasonAdministrator:
-        description: Rejected reason
-        type: array
-        items:
-          type: string
-          enum:
-          - UNAVAILABLE
-          - NOBUDGET
+      demReqDemUserId__usr_first_name:
+        description: First name
+        type: string
       row_id:
         description: Unique technical row ID
-        type: string
-      demReqSprId:
-        description: Suppliers
         type: string
       demReqStatus:
         description: Status
@@ -2030,44 +2455,120 @@ definitions:
         - DRAFT
         - PENDING
         - VALIDATED
-        - REJECTEDMAN
+        - REJECTED
         - REQUESTFUTHERINFO
         - PROCESSING
-        - REJECTEDADM
         - CLOSED
         - CANCELLED
-      demReqRejectedReasonManager:
+      demReqDemUserId__usr_email:
+        description: Email address
+        type: string
+  PlaceData:
+    type: object
+    properties:
+      coord:
+        description: Geographical coordinates
+        type: string
+      address:
+        description: Address
+        type: string
+      row_id:
+        description: Row ID
+        type: string
+      label1:
+        description: 'Label #1'
+        type: string
+      label2:
+        description: 'Label #2'
+        type: string
+      label3:
+        description: 'Label #3'
+        type: string
+  ArrayOfDemSupplier:
+    type: array
+    items:
+      $ref: '#/definitions/DemSupplier'
+  PlaceMapData:
+    type: object
+    properties:
+      places:
+        description: Places
+        type: array
+        items:
+          $ref: '#/definitions/PlaceData'
+      name:
+        description: Name
+        type: string
+  DemPurchase:
+    type: object
+    properties:
+      demReqReference:
+        description: Reference
+        type: string
+      demReqDesc:
+        description: Description
+        type: string
+      demReqRequestDate:
+        description: Request date
+        type: string
+        example: yyyy-MM-dd
+      demReqType:
+        description: Type
+        type: string
+        enum:
+        - PURCHASE
+        - RENTAL
+      demReqDemUserId:
+        description: User
+        type: string
+      demReqTitle:
+        description: Title
+        type: string
+      demReqDemUserId__usr_last_name:
+        description: Last name
+        type: string
+      demReqFutherInformation:
+        description: Further information
+        type: string
+      demReqDemUserId__usr_login:
+        description: Login
+        type: string
+      demReqRejectedReason:
         description: Rejected reason
         type: array
         items:
           type: string
           enum:
-          - NOTNECESSARY
+          - UNAVAILABLE
           - NOBUDGET
-  ArrayOfDemSupplier:
-    type: array
-    items:
-      $ref: '#/definitions/DemSupplier'
-  ArrayOfDemRequest:
-    type: array
-    items:
-      $ref: '#/definitions/DemRequest'
-  ArrayOfDemRental:
-    type: array
-    items:
-      $ref: '#/definitions/DemRental'
-  ActionResult:
-    type: object
-    properties:
-      result:
-        description: Action result
+      demReqSupplyType:
+        description: Supply type
         type: string
-  TreeviewData:
-    type: object
-    properties:
-      item:
-        description: Object item with lists of linked objects' items
-        type: object
+        enum:
+        - IT
+        - FURNITURE
+        - OFFICE
+      demReqDemUserId__usr_first_name:
+        description: First name
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqStatus:
+        description: Status
+        type: string
+        enum:
+        - DRAFT
+        - PENDING
+        - VALIDATED
+        - REJECTED
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - CLOSED
+        - CANCELLED
+      demReqDemUserId__usr_email:
+        description: Email address
+        type: string
   Error400:
     type: object
     properties:
@@ -2116,6 +2617,277 @@ definitions:
         type: integer
         enum:
         - 403
+  DemReqSup:
+    type: object
+    properties:
+      demReqsupSupId:
+        description: Supply
+        type: string
+      demReqsupSupId__demSupSprId__demSprName:
+        description: Supplier Name
+        type: string
+      demReqsupSupId__demSupStockQuantity:
+        description: Stock quantity
+        type: integer
+      demReqsupReqId:
+        description: Request
+        type: string
+      demReqsupSupId__demSupType:
+        description: Supply Type
+        type: string
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      demReqsupQuantityOrdered:
+        description: Quantity ordered
+        type: integer
+      demReqsupOrderChoice:
+        description: Order or decrease stock
+        type: array
+        items:
+          type: string
+          enum:
+          - ORDER
+          - DECREASESTOCK
+      demReqsupSupId__demSupName:
+        description: Supply Name
+        type: string
+      demReqsupReqId__demReqTitle:
+        description: Request Title
+        type: string
+      demReqsupReqId__demReqType:
+        description: Request Type
+        type: string
+        enum:
+        - PURCHASE
+        - RENTAL
+      demReqsupSupId__demSupAllocation:
+        description: Supply Allocation
+        type: string
+        enum:
+        - RENTAL
+        - PURCHASE
+      demReqsupSupId__demSupSprId:
+        description: Supply Suppliers
+        type: string
+      demReqsupSupId__demSupReference:
+        description: Supply Reference
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqsupReqId__demReqReference:
+        description: Request Reference
+        type: string
+      demReqsupReqId__demReqSupplyType:
+        description: Supply type
+        type: string
+        enum:
+        - IT
+        - FURNITURE
+        - OFFICE
+      demReqsupQuantityRequired:
+        description: Quantity required
+        type: integer
+  DemSupply:
+    type: object
+    properties:
+      demSupType:
+        description: Type
+        type: string
+        enum:
+        - FURNITURE
+        - IT
+        - OFFICE
+      demSupReference:
+        description: Reference
+        type: string
+      demSupName:
+        description: Name
+        type: string
+      demSupDeliveryTimeDays:
+        description: Delivery time in days
+        type: integer
+      demSupAllocation:
+        description: Allocation
+        type: string
+        enum:
+        - RENTAL
+        - PURCHASE
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demSupSprId:
+        description: Suppliers
+        type: string
+      demSupStockQuantity:
+        description: Stock quantity
+        type: integer
+      demSupDescription:
+        description: Description
+        type: string
+      demSupPrice:
+        description: Price
+        type: number
+      demSupSprId__demSprName:
+        description: Suppliers Name
+        type: string
+  DemRequest:
+    type: object
+    properties:
+      demReqReference:
+        description: Reference
+        type: string
+      demReqDesc:
+        description: Description
+        type: string
+      demReqRequestDate:
+        description: Request date
+        type: string
+        example: yyyy-MM-dd
+      demReqType:
+        description: Type
+        type: string
+        enum:
+        - PURCHASE
+        - RENTAL
+      demReqDemUserId:
+        description: User
+        type: string
+      demReqTitle:
+        description: Title
+        type: string
+      demReqDemUserId__usr_last_name:
+        description: Last name
+        type: string
+      demReqFutherInformation:
+        description: Further information
+        type: string
+      demReqDemUserId__usr_login:
+        description: Login
+        type: string
+      demReqRejectedReason:
+        description: Rejected reason
+        type: array
+        items:
+          type: string
+          enum:
+          - UNAVAILABLE
+          - NOBUDGET
+      demReqSupplyType:
+        description: Supply type
+        type: string
+        enum:
+        - IT
+        - FURNITURE
+        - OFFICE
+      demReqDemUserId__usr_first_name:
+        description: First name
+        type: string
+      row_id:
+        description: Unique technical row ID
+        type: string
+      demReqStatus:
+        description: Status
+        type: string
+        enum:
+        - DRAFT
+        - PENDING
+        - VALIDATED
+        - REJECTED
+        - REQUESTFUTHERINFO
+        - PROCESSING
+        - CLOSED
+        - CANCELLED
+      demReqDemUserId__usr_email:
+        description: Email address
+        type: string
+  ArrayOfDemRequestHistoric:
+    type: array
+    items:
+      $ref: '#/definitions/DemRequestHistoric'
+  ArrayOfDemRequest:
+    type: array
+    items:
+      $ref: '#/definitions/DemRequest'
+  ArrayOfDemPurchase:
+    type: array
+    items:
+      $ref: '#/definitions/DemPurchase'
+  ArrayOfDemRental:
+    type: array
+    items:
+      $ref: '#/definitions/DemRental'
+  ActionResult:
+    type: object
+    properties:
+      result:
+        description: Action result
+        type: string
+  TreeviewData:
+    type: object
+    properties:
+      item:
+        description: Object item with lists of linked objects' items
+        type: object
+  DemUser:
+    type: object
+    properties:
+      row_module_id__mdl_name:
+        description: Module name
+        type: string
+      usr_image_id:
+        description: Picture
+        type: object
+      usr_email:
+        description: Email address
+        type: string
+      usr_active:
+        description: Active
+        type: string
+        enum:
+        - '0'
+        - '1'
+        - '2'
+        - '3'
+      row_module_id:
+        description: Module
+        type: string
+      usr_login:
+        description: Login
+        type: string
+      usr_home_id__viw_name:
+        description: Home page Name
+        type: string
+      usr_last_name:
+        description: Last name
+        type: string
+      usr_cell_num:
+        description: Mobile/cellular phone number
+        type: string
+      demDemuserRole:
+        description: Role
+        type: string
+        enum:
+        - A
+        - M
+        - U
+      usr_lang:
+        description: Language
+        type: string
+        enum:
+        - ENU
+        - FRA
+      row_id:
+        description: Unique technical row ID
+        type: string
+      usr_home_id:
+        description: Home page
+        type: string
+      usr_first_name:
+        description: First name
+        type: string
 swagger: '2.0'
 info:
   license:
@@ -2129,15 +2901,19 @@ info:
   title: Demandes
   version: '0.1'
 tags:
+- name: DemPurchase
+  description: Purchase request
 - name: DemRental
   description: Rental request
 - name: DemReqSup
   description: Request/Supply
 - name: DemRequest
-  description: Purchase request
+  description: Request
 - name: DemRequestHistoric
   description: Request historic
 - name: DemSupplier
-  description: Suppliers
+  description: Supplier
 - name: DemSupply
-  description: Supplies
+  description: Supply
+- name: DemUser
+  description: User

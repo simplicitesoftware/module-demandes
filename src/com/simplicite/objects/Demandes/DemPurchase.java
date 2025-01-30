@@ -7,14 +7,13 @@ import com.simplicite.util.exceptions.*;
 import com.simplicite.util.tools.*;
 
 /**
- * Business object DemRental
+ * Business object DemPurchase
  */
-public class DemRental extends DemRequest {
+public class DemPurchase extends DemRequest {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
 	public void postLoad() {
 		super.postLoad();
-		
 	}
 }
